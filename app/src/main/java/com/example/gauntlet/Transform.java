@@ -147,7 +147,7 @@ class Transform {
         return mCollider;
     }
 
-    PointF getFiringLocation(float laserLength){
+    PointF getFiringLocation(float arrowLength){
         PointF mFiringLocation = new PointF();
 
         if(mFacingRight) {
@@ -156,7 +156,7 @@ class Transform {
         }else
         {
             mFiringLocation.x = mLocation.x
-                    + (mObjectWidth / 8f) - (laserLength);
+                    + (mObjectWidth / 8f) - (arrowLength);
         }
         // Move the height down a bit of ship height from origin
         mFiringLocation.y = mLocation.y + (mObjectHeight / 1.28f);
