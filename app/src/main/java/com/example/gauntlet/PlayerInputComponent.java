@@ -9,7 +9,7 @@ class PlayerInputComponent implements InputComponent,
         InputObserver {
 
     private Transform mTransform;
-    private PlayerLaserSpawner mPLS;
+    private PlayerArrowSpawner mPLS;
 
     PlayerInputComponent(GameEngine ger) {
 
@@ -57,7 +57,7 @@ class PlayerInputComponent implements InputComponent,
                     // Player has released the flip button
                     mTransform.flip();
                 } else if (buttons.get(HUD.SHOOT).contains(x,y)) {
-                    mPLS.spawnPlayerLaser(mTransform);
+                    mPLS.spawnPlayerArrow(mTransform);
                 }
                 break;
 
@@ -82,7 +82,7 @@ class PlayerInputComponent implements InputComponent,
                     // Player has released the flip button
                     mTransform.flip();
                 } else if (buttons.get(HUD.SHOOT).contains(x, y)) {
-                    mPLS.spawnPlayerLaser(mTransform);
+                    mPLS.spawnPlayerArrow(mTransform);
                 }
                 break;
         }

@@ -2,17 +2,17 @@ package com.example.gauntlet;
 
 import android.graphics.PointF;
 
-class LaserMovementComponent implements MovementComponent {
+class ArrowMovementComponent implements MovementComponent {
 
     @Override
     public boolean move(long fps,
                         Transform t,
                         Transform playerTransform) {
 
-        // Laser can only travel two screen widths
+        // Arrow can only travel two screen widths
         float range = t.getmScreenSize().x * 2;
 
-        // Where is the laser
+        // Where is the arrow
         PointF location = t.getLocation();
 
         // How fast is it going
@@ -25,9 +25,9 @@ class LaserMovementComponent implements MovementComponent {
             location.x -= speed / fps;
         }
 
-        // Has the laser gone out of range
+        // Has the arrow gone out of range
         if(location.x < - range || location.x > range){
-            // disable the laser
+            // disable the arrow
             return false;
         }
 

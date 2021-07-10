@@ -57,7 +57,7 @@ class PhysicsEngine {
                             // There has been a collision
                             // - but does it matter
                             switch (go1.getTag() + " with " + go2.getTag()){
-                                case "Player with Alien Laser":
+                                case "Player with Alien Arrow":
                                     playerHit = true;
                                     mGameState.loseLife(se);
 
@@ -69,7 +69,7 @@ class PhysicsEngine {
 
                                     break;
 
-                                case "Player Laser with Alien":
+                                case "Player Arrow with Alien":
                                     mGameState.increaseScore();
                                     // Respawn the alien
                                     ps.emitParticles(

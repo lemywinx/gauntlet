@@ -55,14 +55,14 @@ class GameObjectFactory {
                 case "PlayerMovementComponent":
                     object.setMovement(new PlayerMovementComponent());
                     break;
-                case "LaserMovementComponent":
-                    object.setMovement(new LaserMovementComponent());
+                case "ArrowMovementComponent":
+                    object.setMovement(new ArrowMovementComponent());
                     break;
                 case "PlayerSpawnComponent":
                     object.setSpawner(new PlayerSpawnComponent());
                     break;
-                case "LaserSpawnComponent":
-                    object.setSpawner(new LaserSpawnComponent());
+                case "ArrowSpawnComponent":
+                    object.setSpawner(new ArrowSpawnComponent());
                     break;
                 case "BackgroundGraphicsComponent":
                     object.setGraphics(new BackgroundGraphicsComponent(),

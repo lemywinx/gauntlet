@@ -5,11 +5,11 @@ import java.util.Random;
 
 class AlienPatrolMovementComponent implements MovementComponent {
 
-    private AlienLaserSpawner alienLaserSpawner;
+    private AlienArrowSpawner alienArrowSpawner;
     private Random mShotRandom = new Random();
 
-    AlienPatrolMovementComponent(AlienLaserSpawner als){
-        alienLaserSpawner = als;
+    AlienPatrolMovementComponent(AlienArrowSpawner als){
+        alienArrowSpawner = als;
     }
 
     @Override
@@ -117,7 +117,7 @@ class AlienPatrolMovementComponent implements MovementComponent {
                         || !t.getFacingRight() && playerLocation.x < loc.x)
                         && Math.abs(playerLocation.x - loc.x) < screenX) {
                     // Fire!
-                    alienLaserSpawner.spawnAlienLaser(t);
+                    alienArrowSpawner.spawnAlienArrow(t);
                 }
 
             }
