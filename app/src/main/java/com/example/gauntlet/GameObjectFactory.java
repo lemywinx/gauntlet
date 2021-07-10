@@ -75,19 +75,19 @@ class GameObjectFactory {
                     object.setSpawner(new BackgroundSpawnComponent());
                     break;
 
-                case "AlienChaseMovementComponent":
+                case "GhostChaseMovementComponent":
                     object.setMovement(
-                            new AlienChaseMovementComponent(
+                            new GhostChaseMovementComponent(
                                     mGameEngineReference));
                     break;
 
-                case "AlienHorizontalSpawnComponent":
+                case "GhostHorizontalSpawnComponent":
                     object.setSpawner(
-                            new AlienHorizontalSpawnComponent());
+                            new GhostHorizontalSpawnComponent());
                     break;
-                case "AlienVerticalSpawnComponent":
+                case "GhostVerticalSpawnComponent":
                     object.setSpawner(
-                            new AlienVerticalSpawnComponent());
+                            new GhostVerticalSpawnComponent());
                     break;
 
                 default:
