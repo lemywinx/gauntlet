@@ -80,15 +80,7 @@ class GameObjectFactory {
                             new AlienChaseMovementComponent(
                                     mGameEngineReference));
                     break;
-                case "AlienPatrolMovementComponent":
-                    object.setMovement(
-                            new AlienPatrolMovementComponent(
-                                    mGameEngineReference));
-                    break;
-                case "AlienDiverMovementComponent":
-                    object.setMovement(
-                            new AlienDiverMovementComponent());
-                    break;
+
                 case "AlienHorizontalSpawnComponent":
                     object.setSpawner(
                             new AlienHorizontalSpawnComponent());
