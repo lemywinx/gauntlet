@@ -2,7 +2,7 @@ package com.example.gauntlet;
 
 import android.graphics.PointF;
 
-class AlienArrowSpec extends ObjectSpec {
+class GhostArrowSpec extends ObjectSpec {
     // This is all the unique specifications
     // for an alien Arrow
     private static final String tag = "Alien Arrow";
@@ -16,7 +16,7 @@ class AlienArrowSpec extends ObjectSpec {
             "ArrowMovementComponent",
             "ArrowSpawnComponent"};
 
-    AlienArrowSpec(){
+    GhostArrowSpec(){
         super(tag, bitmapName,
                 speed, relativeScale,
                 components);

@@ -59,22 +59,22 @@ class Level {
 
         // Create some aliens
         objects.add(FIRST_ALIEN, factory
-                .create(new AlienChaseSpec()));
+                .create(new GhostChaseSpec()));
         objects.add(SECOND_ALIEN, factory
-                .create(new AlienPatrolSpec()));
+                .create(new GhostChaseSpec()));
         objects.add(THIRD_ALIEN, factory
-                .create(new AlienPatrolSpec()));
+                .create(new GhostChaseSpec()));
         objects.add(FOURTH_ALIEN, factory
-                .create(new AlienChaseSpec()));
+                .create(new GhostChaseSpec()));
         objects.add(FIFTH_ALIEN, factory
-                .create(new AlienDiverSpec()));
+                .create(new GhostChaseSpec()));
         objects.add(SIXTH_ALIEN, factory
-                .create(new AlienDiverSpec()));
+                .create(new GhostChaseSpec()));
 
         // Create some alien Arrows
         for (int i = FIRST_ALIEN_ARROW; i != LAST_ALIEN_ARROW + 1; i++) {
             objects.add(i, factory
-                    .create(new AlienArrowSpec()));
+                    .create(new GhostArrowSpec()));
         }
         mNextAlienArrow = FIRST_ALIEN_ARROW;
 
