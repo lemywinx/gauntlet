@@ -16,7 +16,7 @@ class ArrowMovementComponent implements MovementComponent {
         PointF location = t.getLocation();
 
         // How fast is it going
-        float speed = t.getSpeed();
+        float speed = t.getSpeed().x;
 
         if(t.headingRight()){
             location.x += speed / fps;

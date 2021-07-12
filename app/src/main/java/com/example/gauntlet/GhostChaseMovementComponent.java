@@ -38,7 +38,7 @@ class GhostChaseMovementComponent implements MovementComponent {
         // Where is the ship?
         PointF location = t.getLocation();
         // How fast is the ship?
-        float speed = t.getSpeed();
+        float speed = t.getSpeed().x;
 
         // Relative speed difference with player
         float verticalSpeedDifference = .3f;

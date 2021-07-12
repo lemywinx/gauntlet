@@ -9,11 +9,11 @@ class BackgroundMovementComponent implements MovementComponent {
         int currentXClip = t.getXClip();
 
         if(playerTransform.getFacingRight()) {
-            currentXClip -= t.getSpeed() / fps;
+            currentXClip -= t.getSpeed().x / fps;
             t.setXClip(currentXClip);
         }
         else {
-            currentXClip += t.getSpeed() / fps;
+            currentXClip += t.getSpeed().x / fps;
             t.setXClip(currentXClip);
         }
 
