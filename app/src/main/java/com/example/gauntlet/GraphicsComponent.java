@@ -13,6 +13,6 @@ interface GraphicsComponent {
 
     void draw(Canvas canvas,
               Paint paint,
-              Transform t);
+              Transform t, Transform playerT);
 }
           //test for push
