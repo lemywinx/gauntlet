@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.util.Pair;
 
 import java.util.ArrayList;
 
@@ -13,13 +14,9 @@ class HUD {
     private int mScreenHeight;
     private int mScreenWidth;
 
-    private ArrayList<Rect> controls;
-
-    static int UP = 0;
-    static int DOWN = 1;
-    static int FLIP = 2;
-    static int SHOOT = 3;
-    static int PAUSE = 4;
+    private Pair<ArrayList<Rect>, Joystick> controls;
+    static int SHOOT = 0;
+    static int PAUSE = 1;
 
     HUD(Point size){
         mScreenHeight = size.y;
@@ -33,28 +30,7 @@ class HUD {
         int buttonWidth = mScreenWidth / 14;
         int buttonHeight = mScreenHeight / 12;
         int buttonPadding = mScreenWidth / 90;
-
-        Rect up = new Rect(
-                buttonPadding,
-                mScreenHeight - (buttonHeight * 2)
-                        - (buttonPadding * 2),
-                buttonWidth + buttonPadding,
-                mScreenHeight - buttonHeight -
-                        (buttonPadding *2));
-
-        Rect down = new Rect(
-                buttonPadding,
-                mScreenHeight - buttonHeight -
-                        buttonPadding,
-                buttonWidth + buttonPadding,
-                mScreenHeight - buttonPadding);
-
-        Rect flip = new Rect(mScreenWidth -
-                buttonPadding - buttonWidth,
-                mScreenHeight - buttonHeight -
-                        buttonPadding,
-                mScreenWidth - buttonPadding,
-                mScreenHeight - buttonPadding);
+        ArrayList<Rect> buttons = new ArrayList<Rect>();
 
         Rect shoot = new Rect(mScreenWidth -
                 buttonPadding - buttonWidth,
@@ -71,12 +47,10 @@ class HUD {
                 mScreenWidth - buttonPadding,
                 buttonPadding + buttonHeight);
 
-        controls = new ArrayList<>();
-        controls.add(UP,up);
-        controls.add(DOWN,down);
-        controls.add(FLIP, flip);
-        controls.add(SHOOT, shoot);
-        controls.add(PAUSE, pause);
+        controls = new Pair<ArrayList<Rect>, Joystick>(new ArrayList<Rect>(), new Joystick((float)(mScreenWidth / 8), (float)(mScreenHeight / 1.25), mScreenWidth / 15));
+        controls.first.add(SHOOT, shoot);
+        controls.first.add(PAUSE, pause);
+
     }
 
     void draw(Canvas c, Paint p, GameState gs){
@@ -111,15 +85,17 @@ class HUD {
     private void drawControls(Canvas c, Paint p){
         p.setColor(Color.argb(100,255,255,255));
 
-        for(Rect r : controls){
+        for(Rect r : controls.first){
             c.drawRect(r.left, r.top, r.right, r.bottom, p);
         }
+
+       controls.second.drawJoystick(c, p);
 
         // Set the colors back
         p.setColor(Color.argb(255,255,255,255));
     }
 
-    ArrayList<Rect> getControls(){
+    Pair<ArrayList<Rect>, Joystick> getControls(){
         return controls;
     }
 

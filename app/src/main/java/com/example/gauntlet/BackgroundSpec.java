@@ -6,7 +6,7 @@ class BackgroundSpec extends ObjectSpec {
     // This is all the unique specifications
     // for the background
     private static final String tag = "Background";
-    private static final String bitmapName = "background";
+    private static final String bitmapName = "gauntletroom";
     private static final float speed = 2f;
     private static final PointF relativeScale =
             new PointF(1f, 1f);

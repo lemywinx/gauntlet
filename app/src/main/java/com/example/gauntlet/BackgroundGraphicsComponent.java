@@ -72,7 +72,6 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
         Rect fromRect1 = new Rect(left, top, right, bottom);
         Rect toRect1 = new Rect(0, 0, width, height);
         canvas.drawBitmap(mBitmap, fromRect1, toRect1, paint);
-        System.out.println(top - bottom);
 
 
     }
