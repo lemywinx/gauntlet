@@ -68,9 +68,7 @@ class GameObjectFactory {
                     object.setGraphics(new BackgroundGraphicsComponent(),
                             mContext, spec, objectSize);
                     break;
-                case "BackgroundMovementComponent":
-                    object.setMovement(new BackgroundMovementComponent());
-                    break;
+
                 case "BackgroundSpawnComponent":
                     object.setSpawner(new BackgroundSpawnComponent());
                     break;
@@ -88,6 +86,10 @@ class GameObjectFactory {
                 case "GhostVerticalSpawnComponent":
                     object.setSpawner(
                             new GhostVerticalSpawnComponent());
+                    break;
+                case "SimpleMovementComponent":
+                    object.setMovement(
+                            new SimpleMovementComponent());
                     break;
 
                 default:
