@@ -14,7 +14,7 @@ class GhostChaseSpec extends ObjectSpec {
     private static final String[] components = new String [] {
             "StdGraphicsComponent",
             "GhostChaseMovementComponent",
-            "GhostHorizontalSpawnComponent"};
+            "GhostSpawnComponent"};
 
     GhostChaseSpec(){
         super(tag, bitmapName,
