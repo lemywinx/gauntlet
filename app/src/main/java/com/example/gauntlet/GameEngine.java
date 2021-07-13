@@ -9,8 +9,8 @@ import android.view.SurfaceView;
 
 import java.util.ArrayList;
 
-class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngineBroadcaster, PlayerLaserSpawner,
-        AlienLaserSpawner{
+class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngineBroadcaster, PlayerArrowSpawner,
+        AlienArrowSpawner {
     private Thread mThread = null;
     private long mFPS;
 
@@ -54,19 +54,19 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
     }
 
     @Override
-    public boolean spawnPlayerLaser(Transform transform) {
+    public boolean spawnPlayerArrow(Transform transform) {
         ArrayList<GameObject> objects = mLevel.getGameObjects();
 
-        if (objects.get(Level.mNextPlayerLaser)
+        if (objects.get(Level.mNextPlayerArrow)
                 .spawn(transform)) {
 
-            Level.mNextPlayerLaser++;
+            Level.mNextPlayerArrow++;
             mSoundEngine.playShoot();
-            if (Level.mNextPlayerLaser ==
-                    Level.LAST_PLAYER_LASER + 1) {
+            if (Level.mNextPlayerArrow ==
+                    Level.LAST_PLAYER_ARROW + 1) {
 
-                // Just used the last laser
-                Level.mNextPlayerLaser = Level.FIRST_PLAYER_LASER;
+                // Just used the last arrow
+                Level.mNextPlayerArrow = Level.FIRST_PLAYER_ARROW;
 
             }
         }
@@ -74,17 +74,17 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
         return true;
     }
 
-    public void spawnAlienLaser(Transform transform) {
+    public void spawnAlienArrow(Transform transform) {
         ArrayList<GameObject> objects = mLevel.getGameObjects();
-        // Shoot laser IF AVAILABLE
+        // Shoot arrow IF AVAILABLE
         // Pass in the transform of the ship
         // that requested the shot to be fired
-        if (objects.get(Level.mNextAlienLaser).spawn(transform)) {
-            Level.mNextAlienLaser++;
+        if (objects.get(Level.mNextAlienArrow).spawn(transform)) {
+            Level.mNextAlienArrow++;
             mSoundEngine.playShoot();
-            if(Level.mNextAlienLaser ==Level.LAST_ALIEN_LASER + 1) {
-                // Just used the last laser
-                Level.mNextAlienLaser = Level.FIRST_ALIEN_LASER;
+            if(Level.mNextAlienArrow ==Level.LAST_ALIEN_ARROW + 1) {
+                // Just used the last arrow
+                Level.mNextAlienArrow = Level.FIRST_ALIEN_ARROW;
             }
         }
     }

@@ -55,14 +55,14 @@ class GameObjectFactory {
                 case "PlayerMovementComponent":
                     object.setMovement(new PlayerMovementComponent());
                     break;
-                case "LaserMovementComponent":
-                    object.setMovement(new LaserMovementComponent());
+                case "ArrowMovementComponent":
+                    object.setMovement(new ArrowMovementComponent());
                     break;
                 case "PlayerSpawnComponent":
                     object.setSpawner(new PlayerSpawnComponent());
                     break;
-                case "LaserSpawnComponent":
-                    object.setSpawner(new LaserSpawnComponent());
+                case "ArrowSpawnComponent":
+                    object.setSpawner(new ArrowSpawnComponent());
                     break;
                 case "BackgroundGraphicsComponent":
                     object.setGraphics(new BackgroundGraphicsComponent(),
@@ -75,27 +75,19 @@ class GameObjectFactory {
                     object.setSpawner(new BackgroundSpawnComponent());
                     break;
 
-                case "AlienChaseMovementComponent":
+                case "GhostChaseMovementComponent":
                     object.setMovement(
-                            new AlienChaseMovementComponent(
+                            new GhostChaseMovementComponent(
                                     mGameEngineReference));
                     break;
-                case "AlienPatrolMovementComponent":
-                    object.setMovement(
-                            new AlienPatrolMovementComponent(
-                                    mGameEngineReference));
-                    break;
-                case "AlienDiverMovementComponent":
-                    object.setMovement(
-                            new AlienDiverMovementComponent());
-                    break;
-                case "AlienHorizontalSpawnComponent":
+
+                case "GhostHorizontalSpawnComponent":
                     object.setSpawner(
-                            new AlienHorizontalSpawnComponent());
+                            new GhostHorizontalSpawnComponent());
                     break;
-                case "AlienVerticalSpawnComponent":
+                case "GhostVerticalSpawnComponent":
                     object.setSpawner(
-                            new AlienVerticalSpawnComponent());
+                            new GhostVerticalSpawnComponent());
                     break;
 
                 default:

@@ -2,7 +2,7 @@ package com.example.gauntlet;
 
 import android.graphics.PointF;
 
-class LaserSpawnComponent implements SpawnComponent {
+class ArrowSpawnComponent implements SpawnComponent {
 
     @Override
     public void spawn(Transform playerTransform,
