@@ -41,7 +41,6 @@ class GhostChaseMovementComponent implements MovementComponent {
         float speed = t.getSpeed();
 
         // Relative speed difference with player
-        float verticalSpeedDifference = .3f;
         float slowDownRelativeToPlayer = 1.8f;
         // Prevent the ship locking on too accurately
         float verticalSearchBounce = 20f;
@@ -88,13 +87,12 @@ class GhostChaseMovementComponent implements MovementComponent {
             t.stopVertical();
         }
 
-        // Moving vertically is slower than horizontally
-        // Change this to make game harder
+        //move vertically
         if(t.headingDown()){
-            location.y += speed * verticalSpeedDifference / fps;
+            location.y += (speed) / fps;
         }
         else if(t.headingUp()){
-            location.y -= speed * verticalSpeedDifference / fps;
+            location.y -= (speed) / fps;
         }
 
         // Move horizontally
