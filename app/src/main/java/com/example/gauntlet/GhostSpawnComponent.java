@@ -3,7 +3,7 @@ package com.example.gauntlet;
 import android.graphics.PointF;
 import java.util.Random;
 
-class GhostHorizontalSpawnComponent implements SpawnComponent {
+class GhostSpawnComponent implements SpawnComponent {
     @Override
     public void spawn(Transform playerLTransform, Transform t) {
         // Get the screen size
