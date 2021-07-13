@@ -10,8 +10,7 @@ class PhysicsEngine {
     // This signature and much more will
     //change later in the project
     boolean update(long fps, ArrayList<GameObject> objects,
-                   GameState gs, SoundEngine se,
-                   ParticleSystem ps){
+                   GameState gs, SoundEngine se){
 
         // Update all the GameObjects
         for (GameObject object : objects) {
@@ -21,11 +20,7 @@ class PhysicsEngine {
             }
         }
 
-        if(ps.mIsRunning){
-            ps.update(fps);
-        }
-
-        return detectCollisions(gs, objects, se, ps);
+        return detectCollisions(gs, objects, se);
     }
 
 
@@ -33,8 +28,7 @@ class PhysicsEngine {
     private boolean detectCollisions(
             GameState mGameState,
             ArrayList<GameObject> objects,
-            SoundEngine se,
-            ParticleSystem ps ){
+            SoundEngine se){
 
         boolean playerHit = false;
         for(GameObject go1 : objects) {
@@ -72,13 +66,6 @@ class PhysicsEngine {
                                 case "Player Arrow with Alien":
                                     mGameState.increaseScore();
                                     // Respawn the alien
-                                    ps.emitParticles(
-                                            new PointF(
-                                                    go2.getTransform().getLocation().x,
-                                                    go2.getTransform().getLocation().y
-
-                                            )
-                                    );
                                     go2.setInactive();
                                     go2.spawn(objects.get(Level
                                             .PLAYER_INDEX).getTransform());
