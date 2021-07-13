@@ -9,33 +9,53 @@ class PlayerMovementComponent implements MovementComponent {
                         Transform playerTransform){
         // How high is the screen?
         float screenHeight = t.getmScreenSize().y;
-        // Where is the player?
+        PointF velocity;
+        // Resetting movement upon each animation - if finger was lifted. Want to reset info on heading right/left.
+        // This does not affect held down actions as the velocity components will be the same until a move is made. (Only calculated when available to move and not outside of that)
         PointF location = t.getLocation();
-        // How fast is it going
-        float speed = t.getSpeed();
-        // How tall is the ship
-        float height = t.getObjectHeight();
 
-        // Move the ship up or down if needed
-        if(t.headingDown()){
-            location.y += speed / fps;
-        }
-        else if(t.headingUp()){
-            location.y -= speed / fps;
+        // If circle was pressed and is still held down.
+        if (t.isAvailableToMove()) {
+            // Setting vector components based off angle passed in inputComponent by Joystick.
+            // Just multiplying x/y speed by cos/sin of theta to find those components.
+            t.setMovementComponents();
+            velocity = t.getMovementComponents();
+            // Once, components found - very simple implementation below.
+            location.x += velocity.x / fps;
+            location.y += velocity.y / fps;
+
+            // Manually setting the below bool variables so our background movement component moves only when player does..
+            if (velocity.x > 0) {
+                t.headRight();
+            }
+
+            else if (velocity. x < 0) {
+                t.headLeft();
+            }
+
         }
 
-        // Make sure the ship can't go off the screen
-        if(location.y > screenHeight - height){
-            location.y = screenHeight - height;
+        // Keeping player constrained to screen size..
+
+        if (location.y > (screenHeight - t.getObjectHeight())) {
+            location.y = screenHeight - t.getObjectHeight();
         }
-        else if(location.y < 0){
+
+        else if (location.y < 0) {
             location.y = 0;
         }
 
-        // Update the collider
+        if (location.x > (t.getmScreenSize().x - 220)) {
+            location.x = t.getmScreenSize().x - 220;
+        }
+
+        else if (location.x < 0) {
+            location.x = 0;
+        }
+
         t.updateCollider();
 
-
         return true;
+
     }
 }

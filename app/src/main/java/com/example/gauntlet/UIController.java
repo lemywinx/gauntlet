@@ -1,6 +1,7 @@
 package com.example.gauntlet;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.util.Pair;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ class UIController implements InputObserver {
     }
 
     @Override
-    public void handleInput(MotionEvent event, GameState gameState, ArrayList<Rect> buttons) {
+    public void handleInput(MotionEvent event, GameState gameState, Pair<ArrayList<Rect>, Joystick> buttons) {
 
         int i = event.getActionIndex();
         int x = (int) event.getX(i);
@@ -24,7 +25,7 @@ class UIController implements InputObserver {
                 eventType == MotionEvent.ACTION_POINTER_UP) {
 
 
-            if (buttons.get(HUD.PAUSE).contains(x, y)){
+            if (buttons.first.get(HUD.PAUSE).contains(x, y)){
                 // Player pressed the pause button
                 // Respond differently depending
                 // upon the game's state

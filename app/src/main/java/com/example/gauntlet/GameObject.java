@@ -42,8 +42,8 @@ class GameObject {
         mTransform = t;
     }
 
-    void draw(Canvas canvas, Paint paint) {
-        graphicsComponent.draw(canvas, paint, mTransform);
+    void draw(Canvas canvas, Paint paint, Transform playerT) {
+        graphicsComponent.draw(canvas, paint, mTransform, playerT);
     }
 
     void update(long fps, Transform playerTransform) {
