@@ -3,16 +3,16 @@ package com.example.gauntlet;
 import android.graphics.PointF;
 import java.util.Random;
 
-class AlienChaseMovementComponent implements MovementComponent {
+class GhostChaseMovementComponent implements MovementComponent {
 
     private Random mShotRandom = new Random();
 
     // Gives this class the ability to tell the game engine
-    // to spawn a laser
-    private AlienLaserSpawner alienLaserSpawner;
+    // to spawn a arrow
+    private AlienArrowSpawner alienArrowSpawner;
 
-    AlienChaseMovementComponent(AlienLaserSpawner als){
-        alienLaserSpawner = als;
+    GhostChaseMovementComponent(AlienArrowSpawner als){
+        alienArrowSpawner = als;
     }
 
     @Override
@@ -120,7 +120,7 @@ class AlienChaseMovementComponent implements MovementComponent {
                         && Math.abs(playerLocation.x - location.x)
                         < screenWidth) {
                     // Fire!
-                    alienLaserSpawner.spawnAlienLaser(t);
+                    alienArrowSpawner.spawnAlienArrow(t);
                 }
 
             }

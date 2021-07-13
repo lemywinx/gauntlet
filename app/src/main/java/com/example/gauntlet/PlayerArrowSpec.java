@@ -2,21 +2,21 @@ package com.example.gauntlet;
 
 import android.graphics.PointF;
 
-class PlayerLaserSpec extends ObjectSpec {
+class PlayerArrowSpec extends ObjectSpec {
     // This is all the unique specifications
-    // for a player laser
-    private static final String tag = "Player Laser";
-    private static final String bitmapName = "player_laser";
+    // for a player arrow
+    private static final String tag = "Player Arrow";
+    private static final String bitmapName = "arrow";
     private static final float speed = .65f;
     private static final PointF relativeScale =
-            new PointF(8f, 160f);
+            new PointF(20f, 80f);
 
     private static final String[] components = new String [] {
             "StdGraphicsComponent",
-            "LaserMovementComponent",
-            "LaserSpawnComponent"};
+            "ArrowMovementComponent",
+            "ArrowSpawnComponent"};
 
-    PlayerLaserSpec(){
+    PlayerArrowSpec(){
         super(tag, bitmapName,
                 speed, relativeScale,
                 components);

@@ -2,7 +2,7 @@ package com.example.gauntlet;
 
 import java.util.Random;
 
-class AlienVerticalSpawnComponent implements SpawnComponent {
+class GhostVerticalSpawnComponent implements SpawnComponent {
 
     public void spawn(Transform playerLTransform, Transform t) {
 
