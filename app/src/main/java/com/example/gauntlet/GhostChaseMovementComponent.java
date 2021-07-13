@@ -19,8 +19,8 @@ class GhostChaseMovementComponent implements MovementComponent {
     public boolean move(long fps, Transform t, Transform playerTransform) {
 
         // 1 in 100 chance of shot being fired when in line with player
-        final int TAKE_SHOT=0; // Arbitrary
-        final int SHOT_CHANCE = 100;
+        //final int TAKE_SHOT=0; // Arbitrary
+        //final int SHOT_CHANCE = 100;
 
         // How high is the screen?
         float screenWidth = t.getmScreenSize().x;
@@ -111,20 +111,20 @@ class GhostChaseMovementComponent implements MovementComponent {
         // Shoot if the alien is within a ships height above,
         // below, or in line with the player?
         // This could be a hit or a miss
-        if(mShotRandom.nextInt(SHOT_CHANCE) == TAKE_SHOT) {
-            if (Math.abs(playerLocation.y - location.y) < height) {
+       // if(mShotRandom.nextInt(SHOT_CHANCE) == TAKE_SHOT) {
+            //if (Math.abs(playerLocation.y - location.y) < height) {
                 // Is the alien facing the right direction
                 // and close enough to the player
-                if ((facingRight && playerLocation.x > location.x
-                        || !facingRight && playerLocation.x < location.x)
-                        && Math.abs(playerLocation.x - location.x)
-                        < screenWidth) {
+               // if ((facingRight && playerLocation.x > location.x
+                       // || !facingRight && playerLocation.x < location.x)
+                      //  && Math.abs(playerLocation.x - location.x)
+                      //  < screenWidth) {
                     // Fire!
-                    alienArrowSpawner.spawnAlienArrow(t);
-                }
+                  //  alienArrowSpawner.spawnAlienArrow(t);
+               // }
 
-            }
-        }
+           // }
+        //}
 
         return true;
     }
