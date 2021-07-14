@@ -37,45 +37,37 @@ class GhostChaseMovementComponent implements MovementComponent {
         PointF location = t.getLocation();
         // How fast is the ship?
         float speed = t.getSpeed();
+        // How far can the AI see?
+        float mSeeingDistance = t.getmScreenSize().x / 1.5f;
 
         // Relative speed difference with player
         float slowDownRelativeToPlayer = 1.8f;
         // Prevent the ship locking on too accurately
         float verticalSearchBounce = 20f;
 
-        // move in the direction of the player
+        // move in the direction of the player horizontally
         // but relative to the player's direction of travel
-        if (Math.abs(location.x - playerLocation.x)
-                > mChasingDistance) {
-
-            if (location.x < playerLocation.x) {
-                t.headRight();
-            } else if (location.x > playerLocation.x) {
-                t.headLeft();
-            }
+        if (location.x < playerLocation.x) {
+            t.headRight();
+        } else if (location.x > playerLocation.x) {
+            t.headLeft();
+        }
+        // move in the direction of the player vertically
+        // but relative to the player's direction of travel
+        if (location.y < playerLocation.y) {
+            t.headDown();
+        } else if (location.y > playerLocation.y) {
+            t.headUp();
         }
 
-
-            // Use a cast to get rid of unnecessary floats that make ship judder
-            if ((int) location.y - playerLocation.y
-                    < -verticalSearchBounce) {
-
-                t.headDown();
-            } else if ((int) location.y - playerLocation.y
-                    > verticalSearchBounce) {
-
-                t.headUp();
-            }
-
-            // Compensate for movement relative to player-
-            // but only when in view.
-            // Otherwise alien will disappear miles off to one side
-            if(!playerTransform.getFacingRight()){
-                location.x += speed * slowDownRelativeToPlayer / fps;
-            } else{
-                location.x -=  speed * slowDownRelativeToPlayer / fps;
-            }
-      
+        // Compensate for movement relative to player-
+        // but only when in view.
+        // Otherwise alien will disappear miles off to one side
+        if(!playerTransform.getFacingRight()){
+            location.x += speed * slowDownRelativeToPlayer / fps;
+        } else{
+            location.x -=  speed * slowDownRelativeToPlayer / fps;
+        }
 
         //move vertically
         if(t.headingDown()){
