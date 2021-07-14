@@ -27,7 +27,7 @@ class GameObjectFactory {
         object.setmTag(spec.getTag());
 
         // Configure the speed relative to the screen size
-        float speed = mScreenSize.x / spec.getSpeed();
+        float speed = spec.getSpeed();
 
         // Configure the object size relative to screen size
         PointF objectSize =
@@ -35,10 +35,11 @@ class GameObjectFactory {
                         mScreenSize.y / spec.getScale().y);
 
         // Set the location to somewhere off-screen
-        PointF location = new PointF(HIDDEN, HIDDEN);
 
-        object.setTransform(new Transform(speed, objectSize.x,
-                objectSize.y, location, mScreenSize));
+
+        PointF location = new PointF(HIDDEN, HIDDEN);
+        object.setTransform(new Transform(speed, objectSize.x, objectSize.y, location, mScreenSize));
+
 
         // More code here next...
         // Loop through and add/initialize all the components
@@ -68,9 +69,7 @@ class GameObjectFactory {
                     object.setGraphics(new BackgroundGraphicsComponent(),
                             mContext, spec, objectSize);
                     break;
-                case "BackgroundMovementComponent":
-                    object.setMovement(new BackgroundMovementComponent());
-                    break;
+
                 case "BackgroundSpawnComponent":
                     object.setSpawner(new BackgroundSpawnComponent());
                     break;
@@ -84,6 +83,10 @@ class GameObjectFactory {
                 case "GhostSpawnComponent":
                     object.setSpawner(
                             new GhostSpawnComponent());
+                    break;
+                case "SimpleMovementComponent":
+                    object.setMovement(
+                            new SimpleMovementComponent());
                     break;
 
 

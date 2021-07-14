@@ -37,7 +37,7 @@ class GhostChaseMovementComponent implements MovementComponent {
         PointF location = t.getLocation();
 
         // How fast is the Enemy/NPC
-        float speed = t.getSpeed() / (float) 2.5;
+        float speed = (float)(t.getSpeed().x / 2.5);
         // How far can the AI see?
        // float mSeeingDistance = t.getmScreenSize().x / 1.5f;
 
