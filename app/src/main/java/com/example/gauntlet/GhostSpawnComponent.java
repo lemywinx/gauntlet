@@ -6,28 +6,23 @@ import java.util.Random;
 class GhostSpawnComponent implements SpawnComponent {
     @Override
     public void spawn(Transform playerLTransform, Transform t) {
-        // Get the screen size
-        PointF ss = t.getmScreenSize();
-
-        // Spawn just off screen randomly left or right
         Random random = new Random();
-        boolean left = random.nextBoolean();
-        // How far away?
-        float distance =  random.nextInt(2000)
-                + t.getmScreenSize().x;
+
+
+        boolean leftSide = random.nextBoolean();
+        float distance =   t.getmScreenSize().x;
 
         // Generate a height to spawn at where
         // the entire ship is vertically on-screen
-        float spawnHeight = random.nextFloat()
-                * ss.y - t.getSize().y;
+        float spawnHeight = t.getmScreenSize().y;
 
         // Spawn the ship
-        if(left){
-            t.setLocation(-distance, spawnHeight);
+        if(leftSide){
+            t.setLocation(10, 10);
             t.headRight();
         }else{
-            t.setLocation(distance, spawnHeight);
-            t.headingLeft();
+            t.setLocation(distance - 10, spawnHeight - 10);
+            t.headLeft();
         }
 
     }
