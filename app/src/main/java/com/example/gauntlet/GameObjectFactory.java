@@ -71,6 +71,7 @@ class GameObjectFactory {
                 case "BackgroundMovementComponent":
                     object.setMovement(new BackgroundMovementComponent());
                     break;
+
                 case "BackgroundSpawnComponent":
                     object.setSpawner(new BackgroundSpawnComponent());
                     break;
