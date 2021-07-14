@@ -47,7 +47,8 @@ class HUD {
                 mScreenWidth - buttonPadding,
                 buttonPadding + buttonHeight);
 
-        controls = new Pair<ArrayList<Rect>, Joystick>(new ArrayList<Rect>(), new Joystick((float)(mScreenWidth / 8), (float)(mScreenHeight / 1.25), mScreenWidth / 15));
+        controls = new Pair<ArrayList<Rect>, Joystick>(new ArrayList<Rect>(),
+                new Joystick((float)(mScreenWidth / 8), (float)(mScreenHeight / 1.25), mScreenWidth / 15));
         controls.first.add(SHOOT, shoot);
         controls.first.add(PAUSE, pause);
 

@@ -8,8 +8,6 @@ import android.graphics.*;
 
 public class BackgroundGraphicsComponent implements GraphicsComponent{
     private Bitmap mBitmap;
-    private Bitmap mBitmapReversed;
-    private PointF mPlayerPadding;
 
     @Override
     public void initialize(Context c, ObjectSpec s, PointF objectSize) {
@@ -20,58 +18,35 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
 
         Matrix matrix = new Matrix();
         matrix.setScale(-1, 1);
-        mPlayerPadding = new PointF(objectSize.x / 8, objectSize.y / 8);
     }
 
     @Override
-    public void draw(Canvas canvas, Paint paint, Transform m, Transform playerMovement) {
+    public void draw(Canvas canvas, Paint paint, Transform m) {
+        RectF backgroundPortionToDraw = m.getCollider();
+        int width = (int)m.getmScreenSize().x;
+        int height = (int)m.getmScreenSize().y;
 
-        int xClip = m.getXClip();
-        int width = mBitmap.getWidth();
-        int height = mBitmap.getHeight();
-        int startY = 0;
-        int endY = (int)m.getmScreenSize().y + 20;
-        PointF playerLocation = playerMovement.getLocation();
-        int left = 0;
-        int right = 0;
-        int top = 0;
-        int bottom = 0;
+        // Conditions below handle drawing full background upon starting game (based off current player location and no spawn)..
+        if (backgroundPortionToDraw.top == 0 && backgroundPortionToDraw.bottom == 0) {
+            int top = 0;
+            int left = 0;
+            int right = width;
+            int bottom = height;
 
+            Rect fromRect1 = new Rect(left, top, right, bottom);
 
-        if ((playerLocation.x - mPlayerPadding.x) <= 0) {
-            left = 0;
-            right = (int)(left + (mPlayerPadding.x * 2));
-        }
+            Rect toRect1 = new Rect(0, 0, width, height);
+            canvas.drawBitmap(mBitmap, fromRect1, toRect1, paint);
 
-        else if ((playerLocation.x + mPlayerPadding.x) >= width) {
-            right = width;
-            left = (int)(right - (mPlayerPadding.x * 2));
         }
 
         else {
-            right = (int)(playerLocation.x + mPlayerPadding.x);
-            left = (int)(playerLocation.x - mPlayerPadding.x);
+            Rect fromRect1 = new Rect((int)backgroundPortionToDraw.left, (int)backgroundPortionToDraw.top,
+                    (int)backgroundPortionToDraw.right, (int)backgroundPortionToDraw.bottom);
+
+            Rect toRect1 = new Rect(0, 0, width, height);
+            canvas.drawBitmap(mBitmap, fromRect1, toRect1, paint);
         }
-
-        if ((playerLocation.y + mPlayerPadding.y) > width) {
-            bottom = 0;
-            top = (int)(bottom - (mPlayerPadding.y * 2));
-        }
-
-        else if ((playerLocation.y - mPlayerPadding.y) <= 0) {
-            top = 0;
-            bottom = (int)(top + (mPlayerPadding.y * 2));
-        }
-
-        else {
-            top = (int)(playerLocation.y - mPlayerPadding.y);
-            bottom = (int)(playerLocation.y + mPlayerPadding.y);
-        }
-
-
-        Rect fromRect1 = new Rect(left, top, right, bottom);
-        Rect toRect1 = new Rect(0, 0, width, height);
-        canvas.drawBitmap(mBitmap, fromRect1, toRect1, paint);
 
 
     }

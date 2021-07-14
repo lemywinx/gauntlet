@@ -13,5 +13,5 @@ interface GraphicsComponent {
 
     void draw(Canvas canvas,
               Paint paint,
-              Transform t, Transform playerT);
+              Transform t);
 }

@@ -34,9 +34,10 @@ class Transform {
         mObjectWidth = objectWidth;
         mLocation = startingLocation;
         mScreenSize = screenSize;
-        mSpeed = new PointF(mScreenSize.x / speed, mScreenSize.y / speed);
-        System.out.println(mScreenSize.x + " " + mScreenSize.y);
-        System.out.println(mSpeed.x + " " +  mSpeed.y);
+        // Adjusting speeds for horizontal/vertical movement to be the same considering non-square resolution..
+        // Below will be changed.. Quick fix for code review.
+
+        mSpeed = new PointF(mScreenSize.x / speed, mScreenSize.x / speed);
         mVectorComponents = new PointF(0, 0);
     }
 

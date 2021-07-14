@@ -29,7 +29,7 @@ class Renderer {
                 // Draw all the game objects here
                 for (GameObject object : objects) {
                     if(object.checkActive()) {
-                        object.draw(mCanvas, mPaint, objects.get(Level.PLAYER_INDEX).getTransform());
+                        object.draw(mCanvas, mPaint);
                     }
                 }
 
@@ -38,7 +38,7 @@ class Renderer {
             if(gs.getGameOver()) {
                 // Draw just a background graphic here
                 objects.get(Level.BACKGROUND_INDEX)
-                        .draw(mCanvas, mPaint, objects.get(Level.PLAYER_INDEX).getTransform());
+                        .draw(mCanvas, mPaint);
 
             }
 

@@ -47,7 +47,7 @@ class StdGraphicsComponent implements GraphicsComponent {
     @Override
     public void draw(Canvas canvas,
                      Paint paint,
-                     Transform t, Transform playerT) {
+                     Transform t) {
 
         if(t.getFacingRight())
             canvas.drawBitmap(mBitmap,
