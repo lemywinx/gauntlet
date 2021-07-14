@@ -1,6 +1,5 @@
 package com.example.gauntlet;
 
-import android.graphics.PointF;
 import java.util.Random;
 
 class GhostSpawnComponent implements SpawnComponent {
@@ -14,6 +13,7 @@ class GhostSpawnComponent implements SpawnComponent {
 
         // Generate a height to spawn at where
         // the entire ship is vertically on-screen
+
         float spawnHeight = t.getmScreenSize().y;
 
         // Spawn the ship
