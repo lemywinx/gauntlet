@@ -22,7 +22,6 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
     private SoundEngine mSoundEngine;
     HUD mHUD;
     Renderer mRenderer;
-    ParticleSystem mParticleSystem;
     PhysicsEngine mPhysicsEngine;
     Level mLevel;
 
@@ -37,10 +36,6 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
         mRenderer = new Renderer(this);
         mPhysicsEngine = new PhysicsEngine();
 
-        mParticleSystem = new ParticleSystem();
-        // Even just 10 particles look good
-        // But why have less when you can have more
-        mParticleSystem.init(1000);
 
         mLevel = new Level(context,
                 new PointF(size.x, size.y), this);
@@ -104,7 +99,7 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
                 // in a new way
 
                 // This call to update will evolve with the project
-                if(mPhysicsEngine.update(mFPS,objects, mGameState, mSoundEngine, mParticleSystem)){
+                if(mPhysicsEngine.update(mFPS,objects, mGameState, mSoundEngine)){
 
                     // Player hit
                     deSpawnReSpawn();
@@ -114,10 +109,7 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
 
             // Draw all the game objects here
             // in a new way
-            //mRenderer.draw(mGameState, mHUD);
-            //mRenderer.draw(mGameState, mHUD, mParticleSystem);
-            mRenderer.draw(objects, mGameState, mHUD,
-                    mParticleSystem);
+            mRenderer.draw(objects, mGameState, mHUD);
 
 
             // Measure the frames per second in the usual way
@@ -138,10 +130,6 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
             o.handleInput(motionEvent, mGameState,
                     mHUD.getControls());
         }
-
-        // This is temporary code to emit a particle system
-        //mParticleSystem.emitParticles(
-                //new PointF(500,500));
 
         return true;
     }

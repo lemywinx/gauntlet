@@ -19,7 +19,7 @@ class Renderer {
     }
 
     void draw(ArrayList<GameObject> objects, GameState gs,
-              HUD hud, ParticleSystem ps) {
+              HUD hud) {
 
         if (mSurfaceHolder.getSurface().isValid()) {
             mCanvas = mSurfaceHolder.lockCanvas();
@@ -41,12 +41,6 @@ class Renderer {
                         .draw(mCanvas, mPaint, objects.get(Level.PLAYER_INDEX).getTransform());
 
             }
-
-            // Draw a particle system explosion here
-            if(ps.mIsRunning){
-                ps.draw(mCanvas, mPaint);
-            }
-
 
             // Now we draw the HUD on top of everything else
             hud.draw(mCanvas, mPaint, gs);

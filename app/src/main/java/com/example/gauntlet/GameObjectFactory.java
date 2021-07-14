@@ -81,14 +81,11 @@ class GameObjectFactory {
                                     mGameEngineReference));
                     break;
 
-                case "GhostHorizontalSpawnComponent":
+                case "GhostSpawnComponent":
                     object.setSpawner(
-                            new GhostHorizontalSpawnComponent());
+                            new GhostSpawnComponent());
                     break;
-                case "GhostVerticalSpawnComponent":
-                    object.setSpawner(
-                            new GhostVerticalSpawnComponent());
-                    break;
+
 
                 default:
                     // Error unidentified component
