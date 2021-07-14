@@ -18,6 +18,7 @@ class UIController implements InputObserver {
         int x = (int) event.getX(i);
         int y = (int) event.getY(i);
 
+
         int eventType = event.getAction() & MotionEvent.ACTION_MASK;
 
         if(eventType == MotionEvent.ACTION_UP ||
@@ -25,9 +26,11 @@ class UIController implements InputObserver {
 
 
             if (buttons.get(HUD.PAUSE).contains(x, y)){
+
                 // Player pressed the pause button
                 // Respond differently depending
                 // upon the game's state
+
 
                 // If the game is not paused
                 if (!gameState.getPaused()) {

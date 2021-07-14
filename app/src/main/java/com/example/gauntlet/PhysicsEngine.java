@@ -15,7 +15,7 @@ class PhysicsEngine {
         // Update all the GameObjects
         for (GameObject object : objects) {
             if (object.checkActive()) {
-                object.update(fps, objects								.get(Level.PLAYER_INDEX)
+                object.update(fps, objects.get(Level.PLAYER_INDEX)
                         .getTransform());
             }
         }
@@ -52,10 +52,6 @@ class PhysicsEngine {
                             // - but does it matter
                             switch (go1.getTag() + " with " + go2.getTag()){
                                 case "Player with Alien Arrow":
-                                    playerHit = true;
-                                    mGameState.loseLife(se);
-
-                                    break;
 
                                 case "Player with Alien":
                                     playerHit = true;
