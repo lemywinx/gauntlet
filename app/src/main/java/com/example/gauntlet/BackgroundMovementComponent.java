@@ -45,7 +45,7 @@ class BackgroundMovementComponent implements MovementComponent {
         }
 
         if ((playerLocation.y + mPlayerPadding.y) > height) {
-            bottom = 0;
+            bottom = height;
             top = (int)(bottom - (mPlayerPadding.y * 2));
         }
 

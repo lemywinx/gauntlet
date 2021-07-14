@@ -27,7 +27,7 @@ class GameObjectFactory {
         object.setmTag(spec.getTag());
 
         // Configure the speed relative to the screen size
-        float speed = mScreenSize.x / spec.getSpeed();
+        float speed = spec.getSpeed();
 
         // Configure the object size relative to screen size
         PointF objectSize =
