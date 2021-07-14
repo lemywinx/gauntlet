@@ -14,14 +14,10 @@ class Level {
     public static final int LAST_PLAYER_ARROW = 4;
     public static int mNextPlayerArrow;
     public static final int FIRST_ALIEN = 5;
-    public static final int SECOND_ALIEN = 6;
-    public static final int THIRD_ALIEN = 7;
-    public static final int FOURTH_ALIEN = 8;
-    public static final int FIFTH_ALIEN = 9;
-    public static final int SIXTH_ALIEN = 10;
-    public static final int LAST_ALIEN = 10;
-    public static final int FIRST_ALIEN_ARROW = 11;
-    public static final int LAST_ALIEN_ARROW = 15;
+
+    public static final int LAST_ALIEN = 5;
+    public static final int FIRST_ALIEN_ARROW = 6;
+    public static final int LAST_ALIEN_ARROW = 10;
     public static int mNextAlienArrow;
 
     // This will hold all the instances of GameObject
@@ -59,16 +55,6 @@ class Level {
 
         // Create some aliens
         objects.add(FIRST_ALIEN, factory
-                .create(new GhostChaseSpec()));
-        objects.add(SECOND_ALIEN, factory
-                .create(new GhostChaseSpec()));
-        objects.add(THIRD_ALIEN, factory
-                .create(new GhostChaseSpec()));
-        objects.add(FOURTH_ALIEN, factory
-                .create(new GhostChaseSpec()));
-        objects.add(FIFTH_ALIEN, factory
-                .create(new GhostChaseSpec()));
-        objects.add(SIXTH_ALIEN, factory
                 .create(new GhostChaseSpec()));
 
         // Create some alien Arrows
