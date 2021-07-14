@@ -24,7 +24,6 @@ class PlayerMovementComponent implements MovementComponent {
 
             location.x += velocity.x / fps;
             location.y += velocity.y / fps;
-            System.out.println(velocity.x / fps + " " + velocity.y / fps + "\n");
 
             // Manually setting the below bool variables so our background movement component moves only when player does..
             if (velocity.x > 0) {
@@ -39,12 +38,12 @@ class PlayerMovementComponent implements MovementComponent {
 
         // Keeping player constrained to screen size..
 
-        if (location.y > (screenHeight - t.getObjectHeight())) {
-            location.y = screenHeight - t.getObjectHeight();
+        if (location.y > (screenHeight - (t.getObjectHeight() / 2))) {
+            location.y = screenHeight - (t.getObjectHeight() / 2);
         }
 
-        else if (location.y < 0) {
-            location.y = 0;
+        else if (location.y < 0 + (t.getObjectHeight() / 2)) {
+            location.y = 0 + (t.getObjectHeight() / 2);
         }
 
         if (location.x > (t.getmScreenSize().x)) {

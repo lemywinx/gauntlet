@@ -16,7 +16,7 @@ class BackgroundMovementComponent implements MovementComponent {
                         Transform playerTransform) {
 
         PointF screenSize = t.getmScreenSize();
-        mPlayerPadding.x = screenSize.x / 8;
+        mPlayerPadding.x = screenSize.x / 10;
         mPlayerPadding.y = screenSize.y / 8;
         RectF backgroundPortionToDraw = t.getCollider();
 
