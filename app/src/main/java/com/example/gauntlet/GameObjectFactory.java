@@ -35,10 +35,11 @@ class GameObjectFactory {
                         mScreenSize.y / spec.getScale().y);
 
         // Set the location to somewhere off-screen
-        PointF location = new PointF(HIDDEN, HIDDEN);
 
-        object.setTransform(new Transform(speed, objectSize.x,
-                objectSize.y, location, mScreenSize));
+
+        PointF location = new PointF(HIDDEN, HIDDEN);
+        object.setTransform(new Transform(speed, objectSize.x, objectSize.y, location, mScreenSize));
+
 
         // More code here next...
         // Loop through and add/initialize all the components
