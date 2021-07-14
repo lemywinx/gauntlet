@@ -16,10 +16,13 @@ class Transform {
     private boolean mHeadingDown = false;
     private boolean mHeadingLeft = false;
     private boolean mHeadingRight = false;
-    private float mSpeed;
+    private PointF mSpeed;
     private float mObjectHeight;
     private float mObjectWidth;
     private static PointF mScreenSize;
+    private boolean availableToMove = false;
+    private double mAngle;
+    private PointF mVectorComponents;
 
     Transform(float speed, float objectWidth,
               float objectHeight,
@@ -27,11 +30,27 @@ class Transform {
               PointF screenSize){
 
         mCollider = new RectF();
-        mSpeed = speed;
         mObjectHeight = objectHeight;
         mObjectWidth = objectWidth;
         mLocation = startingLocation;
         mScreenSize = screenSize;
+        // Adjusting speeds for horizontal/vertical movement to be the same considering non-square resolution..
+        // Below will be changed.. Quick fix for code review.
+
+        mSpeed = new PointF(mScreenSize.x / speed, mScreenSize.x / speed);
+        mVectorComponents = new PointF(0, 0);
+    }
+
+    void setMovementAvailability() {
+        availableToMove = true;
+    }
+
+    void resetMovementAvailability() {
+        availableToMove = false;
+    }
+
+    void setAngle(double angle) {
+        mAngle = angle;
     }
 
     // Here are some helper methods that the background will use
@@ -95,6 +114,9 @@ class Transform {
         return mHeadingLeft;
     }
 
+    boolean isAvailableToMove() {
+        return availableToMove;
+    }
     void updateCollider(){
         // Pull the borders in a bit (10%)
         mCollider.top = mLocation.y + (mObjectHeight / 10);
@@ -115,7 +137,7 @@ class Transform {
         mHeadingUp = false;
     }
 
-    float getSpeed(){
+    PointF getSpeed(){
         return mSpeed;
     }
 
@@ -163,7 +185,19 @@ class Transform {
         return mFiringLocation;
     }
 
+    void setMovementComponents() {
+        mVectorComponents.x = (float)Math.cos(mAngle) * mSpeed.x;
+        mVectorComponents.y = (float)Math.sin(mAngle) * mSpeed.y;
 
+    }
+
+    PointF getMovementComponents() {
+        return mVectorComponents;
+    }
+
+    void resetMovement() {
+        mFacingRight = false;
+    }
 
 
 
