@@ -23,22 +23,22 @@ class GhostChaseMovementComponent implements MovementComponent {
         //final int SHOT_CHANCE = 100;
 
         // How high is the screen?
-        float screenWidth = t.getmScreenSize().x;
+        //float screenWidth = t.getmScreenSize().x;
         // Where is the player?
         PointF playerLocation = playerTransform.getLocation();
 
         // How tall is the ship
-        float height = t.getObjectHeight();
+       // float height = t.getObjectHeight();
         // Is the ship facing right?
-        boolean facingRight =t.getFacingRight();
+       // boolean facingRight =t.getFacingRight();
         // How far off before the ship doesn't bother chasing?
-        float mChasingDistance = t.getmScreenSize().x / 3f;
+        //float mChasingDistance = t.getmScreenSize().x / 3f;
         // Where is the ship?
         PointF location = t.getLocation();
         // How fast is the ship?
         float speed = t.getSpeed();
         // How far can the AI see?
-        float mSeeingDistance = t.getmScreenSize().x / 1.5f;
+       // float mSeeingDistance = t.getmScreenSize().x / 1.5f;
 
         // Relative speed difference with player
         float slowDownRelativeToPlayer = 1.8f;
@@ -54,9 +54,12 @@ class GhostChaseMovementComponent implements MovementComponent {
         }
         // move in the direction of the player vertically
         // but relative to the player's direction of travel
-        if (location.y < playerLocation.y) {
+        // Use a cast to get rid of unnecessary floats that make ship judder
+        if ((int) location.y - playerLocation.y
+                < -verticalSearchBounce) {
             t.headDown();
-        } else if (location.y > playerLocation.y) {
+        } else if ((int) location.y - playerLocation.y
+                > verticalSearchBounce) {
             t.headUp();
         }
 
