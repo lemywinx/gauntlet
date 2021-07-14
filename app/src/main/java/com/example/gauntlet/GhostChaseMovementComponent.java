@@ -35,8 +35,9 @@ class GhostChaseMovementComponent implements MovementComponent {
         //float mChasingDistance = t.getmScreenSize().x / 3f;
         // Where is the ship?
         PointF location = t.getLocation();
-        // How fast is the ship?
-        float speed = t.getSpeed();
+
+        // How fast is the Enemy/NPC
+        float speed = t.getSpeed() / (float) 2.5;
         // How far can the AI see?
        // float mSeeingDistance = t.getmScreenSize().x / 1.5f;
 
@@ -63,14 +64,6 @@ class GhostChaseMovementComponent implements MovementComponent {
             t.headUp();
         }
 
-        // Compensate for movement relative to player-
-        // but only when in view.
-        // Otherwise alien will disappear miles off to one side
-        if(!playerTransform.getFacingRight()){
-            location.x += speed * slowDownRelativeToPlayer / fps;
-        } else{
-            location.x -=  speed * slowDownRelativeToPlayer / fps;
-        }
 
         //move vertically
         if(t.headingDown()){
