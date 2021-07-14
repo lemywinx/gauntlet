@@ -33,8 +33,6 @@ class GhostChaseMovementComponent implements MovementComponent {
         boolean facingRight =t.getFacingRight();
         // How far off before the ship doesn't bother chasing?
         float mChasingDistance = t.getmScreenSize().x / 3f;
-        // How far can the AI see?
-        float mSeeingDistance = t.getmScreenSize().x / 1.5f;
         // Where is the ship?
         PointF location = t.getLocation();
         // How fast is the ship?
@@ -57,9 +55,6 @@ class GhostChaseMovementComponent implements MovementComponent {
             }
         }
 
-        // Can the Alien "see" the player? If so try and align vertically
-        if (Math.abs(location.x - playerLocation.x)
-                <= mSeeingDistance) {
 
             // Use a cast to get rid of unnecessary floats that make ship judder
             if ((int) location.y - playerLocation.y
@@ -80,12 +75,7 @@ class GhostChaseMovementComponent implements MovementComponent {
             } else{
                 location.x -=  speed * slowDownRelativeToPlayer / fps;
             }
-        }
-        else{
-            // stop vertical movement otherwise alien will
-            // disappear off the top or bottom
-            t.stopVertical();
-        }
+      
 
         //move vertically
         if(t.headingDown()){
