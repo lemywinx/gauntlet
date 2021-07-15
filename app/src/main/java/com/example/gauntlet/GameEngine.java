@@ -39,7 +39,7 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
 
         mLevel = new Level(context,
                 new PointF(size.x, size.y), this);
-
+        mLevel.loadMap(context);
 
     }
     // For the game engine broadcaster interface

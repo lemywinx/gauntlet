@@ -2,8 +2,14 @@ package com.example.gauntlet;
 
 import android.content.Context;
 import android.graphics.PointF;
+import android.util.Log;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 class Level {
 
@@ -19,22 +25,26 @@ class Level {
     public static final int FIRST_ALIEN_ARROW = 6;
     public static final int LAST_ALIEN_ARROW = 10;
     public static int mNextAlienArrow;
+    public static int[][] mMapMatrix;
+    private static final int MAP_ROWS = 32;
+    private static final int MAP_COLS = 32;
 
     // This will hold all the instances of GameObject
     private ArrayList<GameObject> objects;
+
     public Level(Context context,
                  PointF mScreenSize,
-                 GameEngine ge){
+                 GameEngine ge) {
 
         objects = new ArrayList<>();
         GameObjectFactory factory = new GameObjectFactory(
                 context, mScreenSize, ge);
-
+        mMapMatrix = new int[MAP_ROWS][MAP_COLS];
         buildGameObjects(factory);
     }
 
     ArrayList<GameObject> buildGameObjects(
-            GameObjectFactory factory){
+            GameObjectFactory factory) {
 
         objects.clear();
         objects.add(BACKGROUND_INDEX, factory
@@ -68,9 +78,35 @@ class Level {
         return objects;
     }
 
-    ArrayList<GameObject> getGameObjects(){
+    ArrayList<GameObject> getGameObjects() {
         return objects;
     }
 
+    void loadMap(Context applicationContext) {
 
+        int currentRow = 0;
+        String line;
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(applicationContext.getAssets().open("gauntlet_room_1_map.txt")));
+
+            while( (line = reader.readLine()) != null){
+                String[] stringArray = line.split(" ");
+                for( int i=0; i<stringArray.length; i++ ){
+                    mMapMatrix[currentRow][i] = Integer.parseInt(stringArray[i]);
+                }
+                currentRow++;
+
+                Log.d("map-row", String.valueOf(currentRow));
+
+                for(int i=0; i<32; i++){
+                    String temp = " Col: " + i + "\t Val: " +mMapMatrix[2][i] ;
+                    Log.d("map-col", temp);
+                }
+            }
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+    }
 }
