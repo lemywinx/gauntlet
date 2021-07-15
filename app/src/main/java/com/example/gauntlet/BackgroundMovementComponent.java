@@ -31,7 +31,7 @@ class BackgroundMovementComponent implements MovementComponent {
 
         if ((playerLocation.x - mPlayerPadding.x) < 0) {
             left = 0;
-            right = (int)(left + (mPlayerPadding.x * 2));
+            right = (int)(mPlayerPadding.x * 2);
         }
 
         else if ((playerLocation.x + mPlayerPadding.x) > width) {
@@ -51,7 +51,7 @@ class BackgroundMovementComponent implements MovementComponent {
 
         else if ((playerLocation.y - mPlayerPadding.y) < 0) {
             top = 0;
-            bottom = (int)(top + (mPlayerPadding.y * 2));
+            bottom = (int)(mPlayerPadding.y * 2);
         }
 
         else {

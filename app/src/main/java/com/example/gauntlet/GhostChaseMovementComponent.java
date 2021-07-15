@@ -5,44 +5,23 @@ import java.util.Random;
 
 class GhostChaseMovementComponent implements MovementComponent {
 
-    private Random mShotRandom = new Random();
 
-    // Gives this class the ability to tell the game engine
-    // to spawn a arrow
-    private AlienArrowSpawner alienArrowSpawner;
 
     GhostChaseMovementComponent(AlienArrowSpawner als){
-        alienArrowSpawner = als;
+
     }
 
     @Override
     public boolean move(long fps, Transform t, Transform playerTransform) {
 
-        // 1 in 100 chance of shot being fired when in line with player
-        //final int TAKE_SHOT=0; // Arbitrary
-        //final int SHOT_CHANCE = 100;
 
-        // How high is the screen?
-        //float screenWidth = t.getmScreenSize().x;
-        // Where is the player?
         PointF playerLocation = playerTransform.getLocation();
 
-        // How tall is the ship
-       // float height = t.getObjectHeight();
-        // Is the ship facing right?
-       // boolean facingRight =t.getFacingRight();
-        // How far off before the ship doesn't bother chasing?
-        //float mChasingDistance = t.getmScreenSize().x / 3f;
-        // Where is the ship?
+
         PointF location = t.getLocation();
 
-        // How fast is the Enemy/NPC
         float speed = (float)(t.getSpeed().x / 2.5);
-        // How far can the AI see?
-       // float mSeeingDistance = t.getmScreenSize().x / 1.5f;
 
-        // Relative speed difference with player
-        float slowDownRelativeToPlayer = 1.8f;
         // Prevent the ship locking on too accurately
         float verticalSearchBounce = 20f;
 
@@ -54,7 +33,6 @@ class GhostChaseMovementComponent implements MovementComponent {
             t.headLeft();
         }
         // move in the direction of the player vertically
-        // but relative to the player's direction of travel
         // Use a cast to get rid of unnecessary floats that make ship judder
         if ((int) location.y - playerLocation.y
                 < -verticalSearchBounce) {
@@ -84,23 +62,7 @@ class GhostChaseMovementComponent implements MovementComponent {
         // Update the collider
         t.updateCollider();
 
-        // Shoot if the alien is within a ships height above,
-        // below, or in line with the player?
-        // This could be a hit or a miss
-       // if(mShotRandom.nextInt(SHOT_CHANCE) == TAKE_SHOT) {
-            //if (Math.abs(playerLocation.y - location.y) < height) {
-                // Is the alien facing the right direction
-                // and close enough to the player
-               // if ((facingRight && playerLocation.x > location.x
-                       // || !facingRight && playerLocation.x < location.x)
-                      //  && Math.abs(playerLocation.x - location.x)
-                      //  < screenWidth) {
-                    // Fire!
-                  //  alienArrowSpawner.spawnAlienArrow(t);
-               // }
 
-           // }
-        //}
 
         return true;
     }
