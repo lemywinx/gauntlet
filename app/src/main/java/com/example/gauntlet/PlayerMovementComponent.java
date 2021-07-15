@@ -24,6 +24,7 @@ class PlayerMovementComponent implements MovementComponent {
 
             location.x += velocity.x / fps;
             location.y += velocity.y / fps;
+            System.out.println(velocity.x / fps);
 
             // Manually setting the below bool variables so our background movement component moves only when player does..
             if (velocity.x > 0) {
