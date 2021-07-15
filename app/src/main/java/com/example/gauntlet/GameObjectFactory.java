@@ -48,6 +48,7 @@ class GameObjectFactory {
                     object.setInput(new PlayerInputComponent
                             (mGameEngineReference));
                     break;
+
                 case "StdGraphicsComponent":
                     object.setGraphics(new StdGraphicsComponent(),
                             mContext, spec, objectSize);
@@ -86,7 +87,6 @@ class GameObjectFactory {
                     object.setSpawner(
                             new GhostSpawnComponent());
                     break;
-
 
                 default:
                     // Error unidentified component

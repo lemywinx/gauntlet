@@ -9,6 +9,9 @@ import android.graphics.*;
 public class BackgroundGraphicsComponent implements GraphicsComponent{
     private Bitmap mBitmap;
 
+    // Draw on top of original bitmap..
+    // Use low res map and draw original wall/stationary structure upon initialization.
+    // Tracking relative position of player..
     @Override
     public void initialize(Context c, ObjectSpec s, PointF objectSize) {
         int resID = c.getResources().getIdentifier(s.getBitmapName(), "drawable", c.getPackageName());
