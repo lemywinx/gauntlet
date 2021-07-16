@@ -101,7 +101,8 @@ class Level {
         String line;
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    appContext.getAssets().open("gauntlet_room_1_map.txt")));
+                    appContext.getAssets().open(
+                            dungeonMaps[currentDungeon])));
 
             while( (line = reader.readLine()) != null){
                 String[] stringArray = line.split(" ");
@@ -123,4 +124,5 @@ class Level {
         }
 
     }
+    int getCurrentDungeon() { return currentDungeon; }
 }
