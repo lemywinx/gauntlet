@@ -27,6 +27,17 @@ class Level {
     private static final int MAP_ROWS = 32;
     private static final int MAP_COLS = 32;
 
+    // track all dungeon maps
+    Context appContext;
+    public static int currentDungeon = 1;
+    public static final int lastDungeon = 1;
+
+    // keep dungeonMaps[0] empty because dungeon levels start at 1
+    public static final String[] dungeonMaps = {
+            "",
+            "gauntlet_room_1_map.txt"
+    };
+
     // This will hold all the instances of GameObject
     private ArrayList<GameObject> objects;
 
@@ -34,11 +45,15 @@ class Level {
                  PointF mScreenSize,
                  GameEngine ge) {
 
+        appContext = context;
+
         objects = new ArrayList<>();
         GameObjectFactory factory = new GameObjectFactory(
                 context, mScreenSize, ge);
         mMapMatrix = new int[MAP_ROWS][MAP_COLS];
         buildGameObjects(factory);
+
+        loadMap();
     }
 
     ArrayList<GameObject> buildGameObjects(
@@ -80,12 +95,13 @@ class Level {
         return objects;
     }
 
-    void loadMap(Context applicationContext) {
+    void loadMap() {
 
         int currentRow = 0;
         String line;
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(applicationContext.getAssets().open("gauntlet_room_1_map.txt")));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(
+                    appContext.getAssets().open("gauntlet_room_1_map.txt")));
 
             while( (line = reader.readLine()) != null){
                 String[] stringArray = line.split(" ");
