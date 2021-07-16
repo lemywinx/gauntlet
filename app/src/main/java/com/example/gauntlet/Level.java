@@ -125,4 +125,11 @@ class Level {
 
     }
     int getCurrentDungeon() { return currentDungeon; }
+
+    public void goToNextDungeon() {
+        if (currentDungeon != lastDungeon) {
+            currentDungeon++;
+            loadMap();
+        }
+    }
 }
