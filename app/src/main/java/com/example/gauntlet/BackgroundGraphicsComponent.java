@@ -19,8 +19,6 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
 
         mBitmap = Bitmap.createScaledBitmap(mBitmap, (int)objectSize.x, (int)objectSize.y, false);
 
-        Matrix matrix = new Matrix();
-        matrix.setScale(-1, 1);
     }
 
     @Override
