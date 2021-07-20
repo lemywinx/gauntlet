@@ -14,6 +14,7 @@ class Level {
     // Keep track of specific types
     public static final int BACKGROUND_INDEX = 0;
     public static final int PLAYER_INDEX = 1;
+    public static final int PASSKEY_INDEX = 11;
     public static final int FIRST_PLAYER_ARROW = 2;
     public static final int LAST_PLAYER_ARROW = 4;
     public static int mNextPlayerArrow;
@@ -87,6 +88,8 @@ class Level {
         }
         mNextAlienArrow = FIRST_ALIEN_ARROW;
 
+        objects.add(PASSKEY_INDEX, factory
+                .create(new PassKeySpec()));
 
         return objects;
     }

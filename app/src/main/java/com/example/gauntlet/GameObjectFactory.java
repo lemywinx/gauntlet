@@ -73,6 +73,10 @@ class GameObjectFactory {
                     object.setMovement(new BackgroundMovementComponent());
                     break;
 
+                case "SimpleMovementComponent":
+                    object.setMovement(new SimpleMovementComponent());
+                    break;
+
                 case "BackgroundSpawnComponent":
                     object.setSpawner(new BackgroundSpawnComponent());
                     break;
@@ -87,7 +91,10 @@ class GameObjectFactory {
                     object.setSpawner(
                             new GhostSpawnComponent());
                     break;
-
+                case "PassKeySpawnComponent":
+                    object.setSpawner(
+                            new PassKeySpawnComponent());
+                    break;
                 default:
                     // Error unidentified component
                     break;

@@ -3,6 +3,7 @@ package com.example.gauntlet;
 import android.content.Context;
 import android.graphics.Point;
 import android.graphics.PointF;
+import android.graphics.drawable.LevelListDrawable;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
@@ -164,6 +165,10 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
                         .getTransform());
 
         objects.get(Level.BACKGROUND_INDEX)
+                .spawn(objects.get(Level.PLAYER_INDEX)
+                        .getTransform());
+
+        objects.get(Level.PASSKEY_INDEX)
                 .spawn(objects.get(Level.PLAYER_INDEX)
                         .getTransform());
 
