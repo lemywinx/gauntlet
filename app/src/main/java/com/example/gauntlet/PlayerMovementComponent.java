@@ -60,4 +60,49 @@ class PlayerMovementComponent implements MovementComponent {
         return true;
 
     }
+
+     void testTransform(){
+
+            int testArray[][]= new int[32][32];
+         String line;
+         String finalString = "";
+         int currentRow = 0;
+
+//                 String[] stringArray = line.split(" ");
+//                 for( int i=0; i<stringArray.length; i++ ){
+//                     testArray[]
+//                     gameMap.mMapMatrix[currentRow][i] = Integer.parseInt(stringArray[i]);
+//                     if (gameMap.mMapMatrix[currentRow][i] !=
+//                             gameMap.mMapMatrix[Transform.relativePlayerLocation.x][Transform.relativePlayerLocation.y]
+//                     ) {
+//                         Log.d("game-test",
+//                                 "File:" + gameMap.mMapMatrix[currentRow][i] + "\tRead:"
+//                                         + gameMap.mMapMatrix[Transform.relativePlayerLocation.x][Transform.relativePlayerLocation.y]
+//                                        + "\t File Index:"+ "(" + currentRow + "," + i + ")"
+//                                         + "\tPlayer Index:"+ "(" + Transform.relativePlayerLocation.x + "," + Transform.relativePlayerLocation.y + ")"
+//                         );
+//                     }
+//
+//                 }
+
+//                 currentRow++;
+
+                for(int i=0; i<32; i++) {
+
+                    for (int j = 0; j < 32; j++) {
+
+                        finalString+= String.valueOf(gameMap.mMapMatrix[i][j] + " ");
+
+                    }
+                    finalString+="\n";
+                }
+
+             Log.d("map-abcd", finalString);
+             }
+
+
+
+
+
+
 }
