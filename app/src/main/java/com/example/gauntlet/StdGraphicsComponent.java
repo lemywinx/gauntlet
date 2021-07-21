@@ -48,7 +48,7 @@ class StdGraphicsComponent implements GraphicsComponent {
     public void draw(Canvas canvas,
                      Paint paint,
                      Transform t) {
-
+        // Note: t.getLocation().x
         if(t.getFacingRight())
             canvas.drawBitmap(mBitmap,
                     t.getLocation().x,

@@ -54,7 +54,7 @@ class GameObjectFactory {
                             mContext, spec, objectSize);
                     break;
                 case "PlayerMovementComponent":
-                    object.setMovement(new PlayerMovementComponent());
+                    object.setMovement(new PlayerMovementComponent(mContext));
                     break;
                 case "ArrowMovementComponent":
                     object.setMovement(new ArrowMovementComponent());

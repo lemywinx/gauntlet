@@ -33,7 +33,7 @@ public class GameMap {
 
 //                        if(count++ == 0){
 
-                        obstacleContainer.add(new Obstacle(new RectF((i * Transform.lowResConversionFactor.x), (currentRow * Transform.lowResConversionFactor.y),
+                        obstacleContainer.add(new Obstacle(new RectF(((i * Transform.lowResConversionFactor.x)), (currentRow * Transform.lowResConversionFactor.y),
                                 (i * Transform.lowResConversionFactor.x) + 32, (currentRow * Transform.lowResConversionFactor.y) + 32)));
 
                         Log.d("obstacle-location" + ++count, String.valueOf("("+ (i * Transform.lowResConversionFactor.x) + "," + (currentRow * Transform.lowResConversionFactor.y) + "i"));

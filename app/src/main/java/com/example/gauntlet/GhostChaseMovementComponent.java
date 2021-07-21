@@ -6,7 +6,6 @@ import java.util.Random;
 class GhostChaseMovementComponent implements MovementComponent {
 
 
-
     GhostChaseMovementComponent(AlienArrowSpawner als){
 
     }
