@@ -56,7 +56,11 @@ class PhysicsEngine {
                                 case "Player with Alien":
                                     playerHit = true;
                                     mGameState.loseLife(se);
+                                    break;
 
+                                case "Player with Troll":
+                                    playerHit = true;
+                                    mGameState.loseLife(se);
                                     break;
 
                                 case "Player Arrow with Alien":
@@ -69,6 +73,15 @@ class PhysicsEngine {
                                     go1.setInactive();
                                     se.playAlienExplode();
 
+                                    break;
+                                case "playerArrow with Troll":
+                                    mGameState.increaseScore();
+                                    //Respawn the Troll
+                                    go2.setInactive();
+                                    go2.spawn(objects.get(Level
+                                            .PLAYER_INDEX).getTransform());
+                                    go1.setInactive();
+                                    se.playAlienExplode();
                                     break;
 
                                 default:

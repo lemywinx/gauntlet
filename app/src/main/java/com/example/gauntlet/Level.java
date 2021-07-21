@@ -19,9 +19,10 @@ class Level {
     public static int mNextPlayerArrow;
     public static final int FIRST_ALIEN = 5;
 
-    public static final int LAST_ALIEN = 5;
-    public static final int FIRST_ALIEN_ARROW = 6;
-    public static final int LAST_ALIEN_ARROW = 10;
+    public static final int TROLL = 6;
+    public static final int LAST_ALIEN = 6;
+    public static final int FIRST_ALIEN_ARROW = 7;
+    public static final int LAST_ALIEN_ARROW = 11;
     public static int mNextAlienArrow;
     public static int[][] mMapMatrix;
     private static final int MAP_ROWS = 32;
@@ -79,6 +80,8 @@ class Level {
         // Create some aliens
         objects.add(FIRST_ALIEN, factory
                 .create(new GhostChaseSpec()));
+        //Create Troll
+        objects.add(TROLL,factory.create(new TrollSpec()));
 
         // Create some alien Arrows
         for (int i = FIRST_ALIEN_ARROW; i != LAST_ALIEN_ARROW + 1; i++) {

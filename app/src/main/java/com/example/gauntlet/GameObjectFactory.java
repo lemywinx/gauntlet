@@ -88,6 +88,16 @@ class GameObjectFactory {
                             new GhostSpawnComponent());
                     break;
 
+                case "TrollMovementComponent":
+                    object.setMovement(
+                            new TrollMovementComponent(
+                                    mGameEngineReference));
+                    break;
+
+                case "TrollSpawnComponent":
+                    object.setSpawner(
+                            new TrollSpawnComponent());
+                    break;
                 default:
                     // Error unidentified component
                     break;
