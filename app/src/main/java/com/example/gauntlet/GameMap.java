@@ -29,7 +29,7 @@ public class GameMap {
                 String[] stringArray = line.split(" ");
                 for( int i=0; i<stringArray.length; i++ ){
                     mMapMatrix[currentRow][i] = Integer.parseInt(stringArray[i]);
-                    if (mMapMatrix[currentRow][i] == 0) {
+                    if (mMapMatrix[currentRow][i] == 1) {
 
 //                        if(count++ == 0){
 

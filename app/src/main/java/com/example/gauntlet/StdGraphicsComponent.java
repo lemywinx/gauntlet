@@ -55,11 +55,26 @@ class StdGraphicsComponent implements GraphicsComponent {
                     t.getLocation().y,
                     paint);
 
-        else
-            canvas.drawBitmap(mBitmapReversed,
-                    t.getLocation().x,
-                    t.getLocation().y,
-                    paint);
+        }
+
+        else{
+
+            if (!BackgroundMovementComponent.atEdge) {
+                canvas.drawBitmap(mBitmapReversed,
+                        t.getmScreenSize().x / 2,
+                        t.getmScreenSize().y / 2,
+                        paint);
+            }
+
+            else {
+                canvas.drawBitmap(mBitmapReversed,
+                        PlayerMovementComponent.screenLocation.x,
+                        PlayerMovementComponent.screenLocation.y,
+                        paint);
+            }
+
+
+        }
 
 
     }

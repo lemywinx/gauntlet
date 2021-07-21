@@ -19,7 +19,8 @@ class PlayerMovementComponent implements MovementComponent {
     PlayerMovementComponent(Context c) {
        context = c;
         gameMap = new GameMap(c);
-        testTransform();
+        screenLocation.x = screenSize.x / 2;
+        screenLocation.y = screenSize.y / 2;
     }
 
 
@@ -55,39 +56,28 @@ class PlayerMovementComponent implements MovementComponent {
             // Location.x & location.y within 0-5119
             // Put spawn location within the map..
 
-            Transform.relativePlayerLocation.x = (int)Math.floor((location.x) / Transform.lowResConversionFactor.x);
-            Transform.relativePlayerLocation.y = (int)Math.floor((location.y) / Transform.lowResConversionFactor.y) - 1;
+            Transform.relativePlayerLocation.x = (int)Math.round((location.x) / Transform.lowResConversionFactor.x);
+            Transform.relativePlayerLocation.y = (int)Math.round((location.y) / Transform.lowResConversionFactor.y);
 
-            Log.d("Test-1-top", String.valueOf(BackgroundMovementComponent.backgroundPortionToDraw1.top));
-            Log.d("Test-1-left", String.valueOf(BackgroundMovementComponent.backgroundPortionToDraw1.left));
-
-           // XYTracker.x += (velocity.x / fps) / Transform.lowResConversionFactor.x;
-            //XYTracker.y += (velocity.y / fps) / Transform.lowResConversionFactor.y;
-            /*
-            if (XYTracker.x >= 1){
-                Transform.relativePlayerLocation.x++;
-                XYTracker.x = 0;
-            }
-
-            else if (XYTracker.x <= -1) {
-                Transform.relativePlayerLocation.x--;
-                XYTracker.x = 0;
-            }
-
-            if (XYTracker.y >= 1) {
-                Transform.relativePlayerLocation.y++;
-                XYTracker.y = 0;
+            if (BackgroundMovementComponent.atEdge) {
+                screenLocation.x += (velocity.x / fps) / Transform.screenResConversionFactor.x;
+                screenLocation.y += (velocity.y / fps) / Transform.screenResConversionFactor.y;
             }
 
 
-             */
 
             // Use entire large bitmap and track the player's location within it.
             // From rect based off where you are in the entire map.
 
                 Log.d("Error",Transform.relativePlayerLocation.x +" , " + Transform.relativePlayerLocation.y);
-                System.out.println("COORD: " + Transform.relativePlayerLocation.x + "," + Transform.relativePlayerLocation.y +
+
+                try{
+                System.out.println("COORD: " + Transform.relativePlayerLocation.y + "," + Transform.relativePlayerLocation.x +
                         " - " + GameMap.mMapMatrix[Transform.relativePlayerLocation.x][Transform.relativePlayerLocation.y]);
+
+                }catch (Exception e){
+
+                }
 
                 /*
                     if (gameMap.mMapMatrix[Transform.relativePlayerLocation.y][Transform.relativePlayerLocation.x] == 0) {
@@ -141,40 +131,18 @@ class PlayerMovementComponent implements MovementComponent {
      void testTransform(){
 
 
-         String line;
-         int currentRow = 0;
-         try {
-             BufferedReader reader = new BufferedReader(new InputStreamReader(
-                     context.getAssets().open(
-                             Level.dungeonMaps[1])));
+         String line = "";
 
-             while( (line = reader.readLine()) != null){
-                 String[] stringArray = line.split(" ");
-                 for( int i=0; i<stringArray.length; i++ ){
-                     gameMap.mMapMatrix[currentRow][i] = Integer.parseInt(stringArray[i]);
-                     if (gameMap.mMapMatrix[currentRow][i] !=
-                             gameMap.mMapMatrix[Transform.relativePlayerLocation.x][Transform.relativePlayerLocation.y]
-                     ) {
-                         Log.d("game-test",
-                                 "File:" + gameMap.mMapMatrix[currentRow][i] + "Read:"
-                                         + gameMap.mMapMatrix[Transform.relativePlayerLocation.x][Transform.relativePlayerLocation.y]
-                                        + "\tIndex:"+ "(" + currentRow + "," + i + ")");
-                     }
+         for(int i=0; i<32; i++){
+            for(int j=0; i<32; i++){
+                line += String.valueOf(gameMap.mMapMatrix[i][j]);
+            }
+                line+="\n";
 
-                 }
-
-
-                 currentRow++;
-
-//                 Log.d("map-row", String.valueOf(currentRow));
-
-             }
-
-         } catch (IOException ex) {
-             ex.printStackTrace();
          }
-
-
+            Log.d("matrix",line);
      }
+
+
 
 }

@@ -17,7 +17,7 @@ class BackgroundMovementComponent implements MovementComponent {
                         Transform playerTransform) {
 
         PointF screenSize = t.getmScreenSize();
-        mPlayerPadding.x = 5120 / 6;
+        mPlayerPadding.x = 5120 / 10;
         mPlayerPadding.y = 5120 / 10;
         RectF backgroundPortionToDraw = t.getCollider();
         backgroundPortionToDraw1 = backgroundPortionToDraw;
@@ -31,36 +31,54 @@ class BackgroundMovementComponent implements MovementComponent {
         int bottom = 0;
 
         // TO DO: Redefine how we are going about below with player location in 5120 map..
+
         /*
-         if ((playerLocation.x - mPlayerPadding.x) < 0) {
+                  if ((playerLocation.x - mPlayerPadding.x) < 0) {
             left = 0;
             right = (int)(mPlayerPadding.x * 2);
+
         }
 
         else if ((playerLocation.x + mPlayerPadding.x) > width) {
             right = width;
             left = (int)(right - (mPlayerPadding.x * 2));
         }
-         */
+
+        else {
+             right = (int)(playerLocation.x + mPlayerPadding.x);
+             left = (int)(playerLocation.x - mPlayerPadding.x);
+
+         }
 
 
 
-            right = (int)(playerLocation.x + mPlayerPadding.x);
-            left = (int)(playerLocation.x - mPlayerPadding.x);
-
-        /*
             if ((playerLocation.y + mPlayerPadding.y) > height) {
             bottom = height;
             top = (int)(bottom - (mPlayerPadding.y * 2));
+//
         }
-         */
 
-    /*
-        if ((playerLocation.y - mPlayerPadding.y) < 0) {
+
+
+        else if ((playerLocation.y - mPlayerPadding.y) < 0) {
             top = 0;
             bottom = (int)(mPlayerPadding.y * 2);
+//
         }
-     */
+
+        else {
+                top = (int)(playerLocation.y - mPlayerPadding.y);
+                bottom = (int)(playerLocation.y + mPlayerPadding.y);
+//
+            }
+
+         */
+
+        right = (int)(playerLocation.x + mPlayerPadding.x);
+        left = (int)(playerLocation.x - mPlayerPadding.x);
+        top = (int)(playerLocation.y - mPlayerPadding.y);
+        bottom = (int)(playerLocation.y + mPlayerPadding.y);
+
 
 
 
