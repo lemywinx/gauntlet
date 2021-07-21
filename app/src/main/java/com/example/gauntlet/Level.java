@@ -37,7 +37,7 @@ class Level {
     // keep dungeonMaps[0] empty because dungeon levels start at 1
     public static final String[] dungeonMaps = {
             "",
-            "map"
+            "gauntlet_room_1_map_32.txt"
     };
 
     // This will hold all the instances of GameObject

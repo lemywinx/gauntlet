@@ -26,7 +26,7 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
     public void initialize(Context c, ObjectSpec s, PointF objectSize) {
         int resID = c.getResources().getIdentifier(s.getBitmapName(), "drawable", c.getPackageName());
         mBitmap = BitmapFactory.decodeResource(c.getResources(), resID);
-        wallBitmap = BitmapFactory.decodeResource(c.getResources(), R.drawable.alien_ship2);
+        wallBitmap = BitmapFactory.decodeResource(c.getResources(), R.drawable.redwall);
 
 
         // Check documentation for filtering...
