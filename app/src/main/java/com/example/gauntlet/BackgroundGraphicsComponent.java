@@ -17,7 +17,12 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
         int resID = c.getResources().getIdentifier(s.getBitmapName(), "drawable", c.getPackageName());
         mBitmap = BitmapFactory.decodeResource(c.getResources(), resID);
 
-        mBitmap = Bitmap.createScaledBitmap(mBitmap, (int)objectSize.x, (int)objectSize.y, false);
+        mBitmap = Bitmap.createScaledBitmap(mBitmap, (int)objectSize.y, (int)(objectSize.y * 1.1f), false);
+
+    }
+
+    @Override
+    public void initialize(Context c, ObjectSpec s, PointF screenSize, PointF positon) {
 
     }
 

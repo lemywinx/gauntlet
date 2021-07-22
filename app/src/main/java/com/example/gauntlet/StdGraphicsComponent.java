@@ -45,6 +45,11 @@ class StdGraphicsComponent implements GraphicsComponent {
     }
 
     @Override
+    public void initialize(Context c, ObjectSpec s, PointF screenSize, PointF positon) {
+
+    }
+
+    @Override
     public void draw(Canvas canvas,
                      Paint paint,
                      Transform t) {
