@@ -20,10 +20,12 @@ public class SpriteGraphicsComponent implements GraphicsComponent{
     private Bitmap mBitmapReversed;
 
 
-//    public Bitmap generateSprite(Context c, ObjectSpec s, int spriteIndex, InputStream inputStream){
-//        Bitmap spriteBitmap = null;
-//        return spriteBitmap;
-//    }
+    public Bitmap generateSprite(Context c, ObjectSpec s, int spriteIndex, InputStream inputStream){
+        Bitmap spriteBitmap = null;
+        return spriteBitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap){ mBitmap = bitmap; }
 
     @Override
     public void initialize(Context c, ObjectSpec s, PointF objectSize) {
@@ -115,6 +117,10 @@ public class SpriteGraphicsComponent implements GraphicsComponent{
                 position.x = 0;
                 position.y = 0;
                 return position;
+            case "key":
+                position.x = 19;
+                position.y = 6;
+                break;
             default:
                 Log.d("Error", "Failed to find sprite");
                 break;
