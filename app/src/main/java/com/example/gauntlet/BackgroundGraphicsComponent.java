@@ -39,6 +39,7 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
 
         Canvas canvas = new Canvas(bitmapNew);
         canvas.drawBitmap(mBitmap, 0f, 0f, null);
+        Paint paint = new Paint();
         //Paint paint = new Paint();
 
         // Using matrix to update player..
@@ -51,12 +52,12 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
 
 
         for (int i = 0; i < gameMap.obstacleContainer.size(); i++) {
-           // Rect fromRect = new Rect(0, 0, wallBitmap.getWidth(), wallBitmap.getHeight());
-           // Rect toRect = new Rect((int)gameMap.obstacleContainer.get(i).location.left, (int)gameMap.obstacleContainer.get(i).location.top, (int)gameMap.obstacleContainer.get(i).location.right,
-                  //  (int)gameMap.obstacleContainer.get(i).location.bottom);
+           //Rect fromRect = new Rect(0, 0, wallBitmap.getWidth(), wallBitmap.getHeight());
+           //Rect toRect = new Rect((int)gameMap.obstacleContainer.get(i).location.left, (int)gameMap.obstacleContainer.get(i).location.top, (int)gameMap.obstacleContainer.get(i).location.right,
+//                   (int)gameMap.obstacleContainer.get(i).location.bottom);
 
-            //canvas.drawBitmap(wallBitmap, fromRect, toRect, paint);
-            canvas.drawBitmap(wallBitmap, gameMap.obstacleContainer.get(i).location.left, gameMap.obstacleContainer.get(i).location.top, null);
+           // canvas.drawBitmap(wallBitmap, fromRect, toRect, null);
+           canvas.drawBitmap(wallBitmap, gameMap.obstacleContainer.get(i).location.left, gameMap.obstacleContainer.get(i).location.top, null);
 
             System.out.println(gameMap.obstacleContainer.get(i).location.left + "," + gameMap.obstacleContainer.get(i).location.top);
         }

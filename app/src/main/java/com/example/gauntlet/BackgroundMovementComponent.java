@@ -6,6 +6,7 @@ import android.graphics.RectF;
 class BackgroundMovementComponent implements MovementComponent {
     PointF mPlayerPadding;
     public static RectF backgroundPortionToDraw1;
+    public static boolean atEdge = false;
 
     BackgroundMovementComponent() {
         mPlayerPadding = new PointF(0, 0);
@@ -82,8 +83,7 @@ class BackgroundMovementComponent implements MovementComponent {
 
 
 
-            top = (int)(playerLocation.y - mPlayerPadding.y);
-            bottom = (int)(playerLocation.y + mPlayerPadding.y);
+
 
         backgroundPortionToDraw.top = top;
         backgroundPortionToDraw.bottom = bottom;

@@ -13,10 +13,11 @@ class PlayerMovementComponent implements MovementComponent {
     Point initRelLoc = new Point(0, 0);
     PointF initXYTracker = new PointF(0, 0);
     PointF initPlayerLoc = new PointF(0, 0);
+    public static PointF screenLocation = new PointF();
     GameMap gameMap;
     Context context;
 
-    PlayerMovementComponent(Context c) {
+    PlayerMovementComponent(Context c, PointF screenSize) {
        context = c;
         gameMap = new GameMap(c);
         screenLocation.x = screenSize.x / 2;
@@ -79,14 +80,14 @@ class PlayerMovementComponent implements MovementComponent {
 
                 }
 
-                /*
-                    if (gameMap.mMapMatrix[Transform.relativePlayerLocation.y][Transform.relativePlayerLocation.x] == 0) {
+                
+                    if (gameMap.mMapMatrix[Transform.relativePlayerLocation.y][Transform.relativePlayerLocation.x] == 1) {
                     location.x = initPlayerLoc.x;
                     location.y = initPlayerLoc.y;
                     Transform.relativePlayerLocation.x = initRelLoc.x;
                     Transform.relativePlayerLocation.y = initRelLoc.y;
                 }
-                 */
+
 
 
 
@@ -103,8 +104,8 @@ class PlayerMovementComponent implements MovementComponent {
         }
 
         // Keeping player constrained to screen size..
-
-            if (location.y > (screenHeight - (t.getObjectHeight() / 2))) {
+        /*
+                if (location.y > (screenHeight - (t.getObjectHeight() / 2))) {
             location.y = screenHeight - (t.getObjectHeight() / 2);
         }
 
@@ -119,6 +120,8 @@ class PlayerMovementComponent implements MovementComponent {
         else if (location.x < 0) {
             location.x = 0;
         }
+
+         */
 
 
 
