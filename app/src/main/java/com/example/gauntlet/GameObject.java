@@ -26,6 +26,13 @@ class GameObject {
         g.initialize(c, spec, objectSize);
     }
 
+    void setGraphics(GraphicsComponent g, Context c,
+                     ObjectSpec spec, PointF objectSize,
+                     PointF sheetPosition){
+        graphicsComponent = g;
+        g.initialize(c, spec, objectSize, sheetPosition);
+    }
+
     void setMovement(MovementComponent m) {
         movementComponent = m;
     }

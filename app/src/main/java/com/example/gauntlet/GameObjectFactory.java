@@ -53,6 +53,11 @@ class GameObjectFactory {
                     object.setGraphics(new StdGraphicsComponent(),
                             mContext, spec, objectSize);
                     break;
+
+                case "SpriteGraphicsComponent":
+                    object.setGraphics(new SpriteGraphicsComponent(),
+                            mContext, spec, objectSize);
+                    break;
                 case "PlayerMovementComponent":
                     object.setMovement(new PlayerMovementComponent());
                     break;

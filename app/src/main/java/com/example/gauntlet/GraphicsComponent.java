@@ -9,7 +9,12 @@ interface GraphicsComponent {
 
     void initialize(Context c,
                     ObjectSpec s,
-                    PointF screensize);
+                    PointF screenSize);
+
+    void initialize(Context c,
+                    ObjectSpec s,
+                    PointF screenSize,
+                    PointF sheetPosition);
 
     void draw(Canvas canvas,
               Paint paint,
