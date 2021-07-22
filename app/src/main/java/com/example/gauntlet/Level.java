@@ -26,6 +26,7 @@ class Level {
     public static int[][] mMapMatrix;
     private static final int MAP_ROWS = 32;
     private static final int MAP_COLS = 32;
+    public static final int POWER_UP_INDEX = 11;
 
     // track all dungeon maps
     Context appContext;
@@ -87,6 +88,7 @@ class Level {
         }
         mNextAlienArrow = FIRST_ALIEN_ARROW;
 
+        objects.add(POWER_UP_INDEX, factory.create(new PowerUpSpec()));
 
         return objects;
     }

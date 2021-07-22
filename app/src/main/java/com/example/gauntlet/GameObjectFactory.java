@@ -88,6 +88,14 @@ class GameObjectFactory {
                             new GhostSpawnComponent());
                     break;
 
+                case "PowerUpSpawnComponent":
+                    object.setSpawner(new PowerUpSpawnComponent());
+                    break;
+
+                case "SimpleMovementComponent":
+                    object.setMovement(new SimpleMovementComponent());
+                    break;
+
                 default:
                     // Error unidentified component
                     break;

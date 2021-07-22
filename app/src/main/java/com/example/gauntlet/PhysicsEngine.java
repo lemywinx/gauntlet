@@ -71,6 +71,14 @@ class PhysicsEngine {
 
                                     break;
 
+                                case "Player with PowerUp":
+                                    go2.setInactive();
+                                    //increase score by 100
+                                    for(int i = 0; i < 100; i++){
+                                        mGameState.increaseScore();
+                                    }
+                                    break;
+
                                 default:
                                     break;
                             }
