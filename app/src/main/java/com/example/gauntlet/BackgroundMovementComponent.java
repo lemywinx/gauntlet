@@ -32,9 +32,10 @@ class BackgroundMovementComponent implements MovementComponent {
         int bottom = 0;
 
         // TO DO: Redefine how we are going about below with player location in 5120 map..
-
         /*
-                  if ((playerLocation.x - mPlayerPadding.x) < 0) {
+
+         */
+         if ((playerLocation.x - mPlayerPadding.x) < 0) {
             left = 0;
             right = (int)(mPlayerPadding.x * 2);
 
@@ -72,15 +73,6 @@ class BackgroundMovementComponent implements MovementComponent {
                 bottom = (int)(playerLocation.y + mPlayerPadding.y);
 //
             }
-
-         */
-
-        right = (int)(playerLocation.x + mPlayerPadding.x);
-        left = (int)(playerLocation.x - mPlayerPadding.x);
-        top = (int)(playerLocation.y - mPlayerPadding.y);
-        bottom = (int)(playerLocation.y + mPlayerPadding.y);
-
-
 
 
 

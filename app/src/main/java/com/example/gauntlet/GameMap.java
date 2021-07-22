@@ -26,7 +26,9 @@ public class GameMap {
                             Level.dungeonMaps[1])));
 
             while( (line = reader.readLine()) != null){
+                Log.d("Sprint",line + " Size \t" + String.valueOf(line.length()) );
                 String[] stringArray = line.split(" ");
+                Log.d("Array-L",String.valueOf(stringArray.length));
                 for( int i=0; i<stringArray.length; i++ ){
                     mMapMatrix[currentRow][i] = Integer.parseInt(stringArray[i]);
                     if (mMapMatrix[currentRow][i] == 1) {
@@ -34,7 +36,7 @@ public class GameMap {
 //                        if(count++ == 0){
 
                         obstacleContainer.add(new Obstacle(new RectF(((i * Transform.lowResConversionFactor.x)), (currentRow * Transform.lowResConversionFactor.y),
-                                (i * Transform.lowResConversionFactor.x) + 32, (currentRow * Transform.lowResConversionFactor.y) + 32)));
+                                (i * Transform.lowResConversionFactor.x) + 32, (currentRow * Transform.lowResConversionFactor.y) + 50)));
 
                         Log.d("obstacle-location" + ++count, String.valueOf("("+ (i * Transform.lowResConversionFactor.x) + "," + (currentRow * Transform.lowResConversionFactor.y) + "i"));
 //                        }
