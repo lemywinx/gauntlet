@@ -5,7 +5,6 @@ import android.graphics.RectF;
 
 class BackgroundMovementComponent implements MovementComponent {
     PointF mPlayerPadding;
-    public static RectF backgroundPortionToDraw1;
     public static boolean atEdge = false;
 
     BackgroundMovementComponent() {
@@ -20,8 +19,7 @@ class BackgroundMovementComponent implements MovementComponent {
         PointF screenSize = t.getmScreenSize();
         mPlayerPadding.x = GameData.IMAGE_RESOLUTION_X / 10;
         mPlayerPadding.y = GameData.IMAGE_RESOLUTION_Y / 10;
-        RectF backgroundPortionToDraw = t.getCollider();
-        backgroundPortionToDraw1 = backgroundPortionToDraw;
+        GameData.visibleScreenRect = t.getCollider();
 
         int width = 5120;
         int height = 5120;
@@ -74,14 +72,10 @@ class BackgroundMovementComponent implements MovementComponent {
 //
             }
 
-
-
-
-        backgroundPortionToDraw.top = top;
-        backgroundPortionToDraw.bottom = bottom;
-        backgroundPortionToDraw.left = left;
-        backgroundPortionToDraw.right = right;
-
+        GameData.visibleScreenRect.top = top;
+        GameData.visibleScreenRect.bottom = bottom;
+        GameData.visibleScreenRect.left = left;
+        GameData.visibleScreenRect.right = right;
 
         return true;
     }

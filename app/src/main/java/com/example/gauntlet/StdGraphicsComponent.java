@@ -42,6 +42,8 @@ class StdGraphicsComponent implements GraphicsComponent {
                 mBitmap.getWidth(),
                 mBitmap.getHeight(),
                 matrix, true);
+
+
     }
 
     @Override

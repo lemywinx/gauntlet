@@ -1,6 +1,7 @@
 package com.example.gauntlet;
 
 import android.graphics.Bitmap;
+import android.graphics.RectF;
 
 public class GameData {
 
@@ -16,5 +17,6 @@ public class GameData {
     public static final int LOWRES_CONV_FACTOR_X = IMAGE_RESOLUTION_X/ROWS;
     public static final int LOWRES_CONV_FACTOR_Y = IMAGE_RESOLUTION_Y/COLS;
 
+    public static RectF visibleScreenRect = new RectF();
 
 }

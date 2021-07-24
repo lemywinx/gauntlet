@@ -28,6 +28,7 @@ class Transform {
     public static PointF lowResConversionFactor = new PointF(0, 0);
     public static PointF screenResConversionFactor = new PointF(0, 0);
     public static int numObjects = 0;
+    public static Point bitmapRes;
 
     Transform(float speed, float objectWidth,
               float objectHeight,
@@ -40,6 +41,8 @@ class Transform {
         mLocation = startingLocation;
         mScreenSize = screenSize;
 
+        bitmapRes = new Point(GameData.IMAGE_RESOLUTION_X, GameData.IMAGE_RESOLUTION_Y);
+
         lowResConversionFactor.x = GameData.LOWRES_CONV_FACTOR_X;
         lowResConversionFactor.y = GameData.LOWRES_CONV_FACTOR_Y;
 
@@ -49,8 +52,8 @@ class Transform {
         if (numObjects == 1) {
             //relativePlayerLocation.x = ((int)(mScreenSize.x / lowResConversionFactor.x) / 2) - 1;
             //relativePlayerLocation.y = ((int)(mScreenSize.y / lowResConversionFactor.y) / 2) - 1;
-            Transform.relativePlayerLocation.x = (int)((5120 / lowResConversionFactor.x) / 2) - 1;
-            Transform.relativePlayerLocation.y =(int)((5120 / lowResConversionFactor.y) / 2) - 1;
+            Transform.relativePlayerLocation.x = (int)((bitmapRes.x / lowResConversionFactor.x) / 2) - 1;
+            Transform.relativePlayerLocation.y =(int)((bitmapRes.y / lowResConversionFactor.y) / 2) - 1;
             //lowResConversionFactor.x = BackgroundGraphicsComponent.bitmapNew.getWidth() / 32;
             //lowResConversionFactor.y = BackgroundGraphicsComponent.bitmapNew.getWidth() / 32;
 
@@ -62,7 +65,7 @@ class Transform {
         // Below will be changed.. Quick fix for code review.
         numObjects++;
 
-        mSpeed = new PointF(5120 / speed, 5120 / speed);
+        mSpeed = new PointF(bitmapRes.x / speed, bitmapRes.y / speed);
         mVectorComponents = new PointF(0, 0);
     }
 
@@ -77,8 +80,8 @@ class Transform {
     static void resetRelativeLocation() {
         //relativePlayerLocation.x = ((int)(mScreenSize.x / lowResConversionFactor.x) / 2) -1;
         //relativePlayerLocation.y =
-        relativePlayerLocation.x = (int)((5120 / lowResConversionFactor.x) / 2) - 1;
-        relativePlayerLocation.y = (int)((5120 / lowResConversionFactor.y) / 2) - 1;
+        relativePlayerLocation.x = (int)((bitmapRes.x / lowResConversionFactor.x) / 2) - 1;
+        relativePlayerLocation.y = (int)((bitmapRes.y / lowResConversionFactor.y) / 2) - 1;
         //System.out.println("STARTING: " + Transform.relativePlayerLocation.x + "," + Transform.relativePlayerLocation.y);
 
         PlayerMovementComponent.XYTracker.x = 0;
