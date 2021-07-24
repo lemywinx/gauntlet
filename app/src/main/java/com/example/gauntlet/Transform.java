@@ -39,11 +39,12 @@ class Transform {
         mObjectWidth = objectWidth;
         mLocation = startingLocation;
         mScreenSize = screenSize;
-        // TO DO: Finalize scaling..
-        lowResConversionFactor.x = 5120 / 32;
-        lowResConversionFactor.y = 5120 / 32;
-        screenResConversionFactor.x = 5120 / mScreenSize.x;
-        screenResConversionFactor.y = 5120 / mScreenSize.y;
+
+        lowResConversionFactor.x = GameData.LOWRES_CONV_FACTOR_X;
+        lowResConversionFactor.y = GameData.LOWRES_CONV_FACTOR_Y;
+
+        screenResConversionFactor.x = GameData.IMAGE_RESOLUTION_X / mScreenSize.x;
+        screenResConversionFactor.y = GameData.IMAGE_RESOLUTION_Y / mScreenSize.y;
 
         if (numObjects == 1) {
             //relativePlayerLocation.x = ((int)(mScreenSize.x / lowResConversionFactor.x) / 2) - 1;
