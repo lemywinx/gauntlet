@@ -1,9 +1,7 @@
 package com.example.gauntlet;
 
 import android.content.Context;
-import android.content.Context;
 import android.graphics.*;
-import android.util.Log;
 
 
 // Overall, same idea as BackgroundGraphics component within ScrollingShooter.
