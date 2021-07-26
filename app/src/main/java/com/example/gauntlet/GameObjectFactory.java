@@ -100,6 +100,17 @@ class GameObjectFactory {
                     object.setSpawner(
                             new PassKeySpawnComponent());
                     break;
+
+                case "TrollMovementComponent":
+                    object.setMovement(
+                            new TrollMovementComponent(
+                                    mGameEngineReference));
+                    break;
+
+                case "TrollSpawnComponent":
+                    object.setSpawner(
+                            new TrollSpawnComponent());
+                    break;
                 default:
                     // Error unidentified component
                     break;

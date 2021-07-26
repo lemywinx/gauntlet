@@ -56,14 +56,19 @@ class PhysicsEngine {
 
                                 case "Player with Alien":
 
+                                case "Player with Troll":
+
                                 case "Player with Goblin":
                                     playerHit = true;
                                     mGameState.loseLife(se);
                                     break;
 
+
                                 case "Player Arrow with Alien":
 
                                 case "Player Arrow with Goblin":
+
+                                case "playerArrow with Troll":
                                     mGameState.increaseScore();
                                     // Respawn the alien
                                     go2.setInactive();
@@ -72,9 +77,7 @@ class PhysicsEngine {
 
                                     go1.setInactive();
                                     se.playAlienExplode();
-
                                     break;
-                                // Respawn the goblin
 
                                 case "Player with PassKey":
                                     Log.d("Player", " ");
