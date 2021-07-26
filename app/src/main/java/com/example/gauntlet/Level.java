@@ -2,6 +2,7 @@ package com.example.gauntlet;
 
 import android.content.Context;
 import android.graphics.PointF;
+import android.graphics.RectF;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -31,6 +32,7 @@ class Level {
     Context appContext;
     public static int currentDungeon = 1;
     public static final int lastDungeon = 1;
+    public static ArrayList<Obstacle> obstacleContainer = new ArrayList<Obstacle>();
 
     // keep dungeonMaps[0] empty because dungeon levels start at 1
     public static final String[] dungeonMaps = {
@@ -108,15 +110,18 @@ class Level {
                 String[] stringArray = line.split(" ");
                 for( int i=0; i<stringArray.length; i++ ){
                     mMapMatrix[currentRow][i] = Integer.parseInt(stringArray[i]);
+                    if (mMapMatrix[currentRow][i] == 0) {
+
+                        obstacleContainer.add(new Obstacle(new RectF(i * 16, (currentRow * 16), (i * 16) + 15, (currentRow * 16) + 15)));
+
+                    }
+
                 }
+
                 currentRow++;
 
                 Log.d("map-row", String.valueOf(currentRow));
 
-                for(int i=0; i<32; i++){
-                    String temp = " Col: " + i + "\t Val: " +mMapMatrix[2][i] ;
-                    Log.d("map-col", temp);
-                }
             }
 
         } catch (IOException ex) {
