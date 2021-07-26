@@ -111,6 +111,12 @@ class GameObjectFactory {
                     object.setSpawner(
                             new TrollSpawnComponent());
                     break;
+
+                case "DoorSpawnComponent":
+                    object.setSpawner(
+                            new DoorSpawnComponent());
+                    break;
+
                 default:
                     // Error unidentified component
                     break;

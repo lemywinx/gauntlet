@@ -92,6 +92,8 @@ class Level {
         objects.add(TROLL,factory.create(new TrollSpec()));
 
 
+
+
         // Create some alien Arrows
         for (int i = FIRST_ALIEN_ARROW; i != LAST_ALIEN_ARROW + 1; i++) {
             objects.add(i, factory
