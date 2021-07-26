@@ -18,7 +18,7 @@ class PlayerMovementComponent implements MovementComponent {
     Context context;
 
     PlayerMovementComponent(Context c, PointF screenSize) {
-       context = c;
+        context = c;
         gameMap = new GameMap(c);
         screenLocation.x = screenSize.x / 2;
         screenLocation.y = screenSize.y / 2;
@@ -42,6 +42,8 @@ class PlayerMovementComponent implements MovementComponent {
         initPlayerLoc.y = location.y;
         initRelLoc.x = Transform.relativePlayerLocation.x;
         initRelLoc.y = Transform.relativePlayerLocation.y;
+        int quadrant = 0;
+
 
         // If circle was pressed and is still held down.
         if (t.isAvailableToMove()) {
@@ -54,52 +56,34 @@ class PlayerMovementComponent implements MovementComponent {
             location.x += (velocity.x / fps);
             location.y += velocity.y / fps;
 
+            for (int i = 0; i < SpatialCollision.gridRects.size(); i++) {
+                if (RectF.intersects(t.getCollider(), SpatialCollision.gridRects.get(i))) {
+                    quadrant = i;
+                    break;
+                }
+            }
+
+
             // Location.x & location.y within 0-5119
             // Put spawn location within the map..
 
 
 
 
-            Transform.relativePlayerLocation.y = (int)Math.round((location.y) / Transform.lowResConversionFactor.y);
-            Transform.relativePlayerLocation.x = (int)Math.round((location.x) / Transform.lowResConversionFactor.x);
-            System.out.println("CHECK: " + t.getSize().x);
-            if ((velocity.x / fps) < 0) {
-                Transform.relativePlayerLocation.x = (int)Math.round((location.x - (t.getSize().x * .70)) / Transform.lowResConversionFactor.x);
-            }
-
-            else {
-                Transform.relativePlayerLocation.x = (int)Math.round((location.x - (t.getSize().x * .30)) / Transform.lowResConversionFactor.x);
-            }
-
-            if ((velocity.y / fps) > 0) {
-                Transform.relativePlayerLocation.y = (int)Math.round((location.y - (t.getObjectHeight() * .05)) / Transform.lowResConversionFactor.y);
-            }
-
-            else {
-                Transform.relativePlayerLocation.y = (int)Math.round((location.y - (t.getObjectHeight() * .75)) / Transform.lowResConversionFactor.y);
-            }
+           // Transform.relativePlayerLocation.y = (int)Math.round((location.y) / Transform.lowResConversionFactor.y);
+            //Transform.relativePlayerLocation.x = (int)Math.round((location.x) / Transform.lowResConversionFactor.x);
 
 
-            /*
-                if ((velocity.x / fps) > 0) {
-                Transform.relativePlayerLocation.x = (int)Math.round((location.x + 40) / Transform.lowResConversionFactor.x);
-            }
-
-            else {
-                Transform.relativePlayerLocation.x = (int)Math.round((location.x - 15) / Transform.lowResConversionFactor.x);
-            }
-
-            if ((velocity.y / fps) > 0) {
-                Transform.relativePlayerLocation.y = (int)Math.round((location.y + t.getObjectHeight() - 15) / Transform.lowResConversionFactor.y);
-            }
-
-            else {
-                Transform.relativePlayerLocation.y = (int)Math.round((location.y + 15) / Transform.lowResConversionFactor.y);
-            }
-
-             */
 
             t.updateCollider();
+
+            for (int i = 0; i < SpatialCollision.gridWalls.get(quadrant).size(); i++) {
+                if (RectF.intersects(t.getCollider(), SpatialCollision.gridWalls.get(quadrant).get(i))) {
+                    location.x = initPlayerLoc.x;
+                    location.y = initPlayerLoc.y;
+                    break;
+                }
+            }
 
 
 
@@ -107,15 +91,13 @@ class PlayerMovementComponent implements MovementComponent {
             // Use entire large bitmap and track the player's location within it.
             // From rect based off where you are in the entire map.
 
-                Log.d("Error",Transform.relativePlayerLocation.y +" , " + Transform.relativePlayerLocation.x);
-                Log.d("location",location.x +" , " + location.y);
 
 
                         // Handle Collision
 
-//                        gameMap.obstacleContainer
-                    RectF objectRect = gameMap.gameHashTable.get(new Point(Transform.relativePlayerLocation.y,Transform.relativePlayerLocation.x));
+//                        gameMap.obstacleContaine
 
+                    /*
                     for (int i = 0; i < gameMap.obstacleContainer.size(); i++) {
                         if (RectF.intersects(gameMap.obstacleContainer.get(i).getLocation(), t.getCollider())) {
 
@@ -123,6 +105,8 @@ class PlayerMovementComponent implements MovementComponent {
                             location.y = initPlayerLoc.y;
                         }
                     }
+                     */
+
 
 
 
@@ -142,8 +126,6 @@ class PlayerMovementComponent implements MovementComponent {
                     }
                 }
                      */
-
-
 
 
 

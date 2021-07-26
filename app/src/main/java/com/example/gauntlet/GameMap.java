@@ -19,6 +19,8 @@ public class GameMap {
 
     public static ArrayList<Obstacle> obstacleContainer = new ArrayList<Obstacle>();
     private Point lowResFactor;
+    private SpatialCollision localCollisionComponent;
+
 
     GameMap(Context c) {
         lowResFactor = new Point(GameData.LOWRES_CONV_FACTOR_X,
@@ -26,9 +28,10 @@ public class GameMap {
 
         MAP_ROWS = GameData.ROWS;
         MAP_COLS = GameData.COLS;
-
-        
         mMapMatrix = new int[MAP_ROWS][MAP_COLS];
+
+        localCollisionComponent = new SpatialCollision();
+
         int currentRow = 0;
         String line;
         int count=0;
@@ -42,15 +45,21 @@ public class GameMap {
                 String[] stringArray = line.split(" ");
                 Log.d("Array-L",String.valueOf(stringArray.length));
                 RectF obstacleRect;
-                for( int i=0; i<stringArray.length; i++ ){
+                for(int i=0; i<stringArray.length; i++){
                     mMapMatrix[currentRow][i] = Integer.parseInt(stringArray[i]);
                     if (mMapMatrix[currentRow][i] == 1) {
                                 obstacleRect = new RectF(((i * lowResFactor.x)), (currentRow * lowResFactor.y),
                                         (i * lowResFactor.x) + 160, (currentRow * lowResFactor.y) + 160);
+
+
+                                SpatialCollision.loadQuadrants(obstacleRect);
+
+
+
 //                        if(count++ == 0){
                         // Pass in the RectF and Point
                         obstacleContainer.add(new Obstacle(obstacleRect));
-                        gameHashTable.put(new Point(currentRow,i), obstacleRect);
+                        //gameHashTable.put(new Point(currentRow,i), obstacleRect);
 
                         Log.d("obstacle-location" + ++count, String.valueOf("("+ (i * lowResFactor.x) + "," + (currentRow * lowResFactor.y) + "i"));
 //                        }
