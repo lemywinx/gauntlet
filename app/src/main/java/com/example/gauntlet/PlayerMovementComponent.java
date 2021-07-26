@@ -1,8 +1,29 @@
 package com.example.gauntlet;
 
-import android.graphics.PointF;
+import android.content.Context;
+import android.graphics.*;
+import android.util.Log;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 class PlayerMovementComponent implements MovementComponent {
+    public static PointF XYTracker = new PointF(0, 0);
+    Point initRelLoc = new Point(0, 0);
+    PointF initXYTracker = new PointF(0, 0);
+    PointF initPlayerLoc = new PointF(0, 0);
+    public static PointF screenLocation = new PointF();
+    GameMap gameMap;
+    Context context;
+
+    PlayerMovementComponent(Context c, PointF screenSize) {
+       context = c;
+        gameMap = new GameMap(c);
+        screenLocation.x = screenSize.x / 2;
+        screenLocation.y = screenSize.y / 2;
+    }
+
 
     @Override
     public boolean move(long fps, Transform t,
@@ -14,6 +35,14 @@ class PlayerMovementComponent implements MovementComponent {
         // This does not affect held down actions as the velocity components will be the same until a move is made. (Only calculated when available to move and not outside of that)
         PointF location = t.getLocation();
 
+
+      //  initXYTracker.x = XYTracker.x;
+       // initXYTracker.y = XYTracker.y;
+        initPlayerLoc.x = location.x;
+        initPlayerLoc.y = location.y;
+        initRelLoc.x = Transform.relativePlayerLocation.x;
+        initRelLoc.y = Transform.relativePlayerLocation.y;
+
         // If circle was pressed and is still held down.
         if (t.isAvailableToMove()) {
             // Setting vector components based off angle passed in inputComponent by Joystick.
@@ -24,7 +53,38 @@ class PlayerMovementComponent implements MovementComponent {
 
             location.x += velocity.x / fps;
             location.y += velocity.y / fps;
-            System.out.println(velocity.x / fps);
+
+            // Location.x & location.y within 0-5119
+            // Put spawn location within the map..
+
+            Transform.relativePlayerLocation.x = (int)Math.round((location.x) / Transform.lowResConversionFactor.x);
+            Transform.relativePlayerLocation.y = (int)Math.round((location.y) / Transform.lowResConversionFactor.y);
+
+            if (BackgroundMovementComponent.atEdge) {
+                screenLocation.x += (velocity.x / fps) / Transform.screenResConversionFactor.x;
+                screenLocation.y += (velocity.y / fps) / Transform.screenResConversionFactor.y;
+            }
+
+
+
+            // Use entire large bitmap and track the player's location within it.
+            // From rect based off where you are in the entire map.
+
+                Log.d("Error",Transform.relativePlayerLocation.y +" , " + Transform.relativePlayerLocation.x);
+                Log.d("location",location.x +" , " + location.y);
+
+
+                        // Handle Collision
+                    if (gameMap.mMapMatrix[Transform.relativePlayerLocation.y][Transform.relativePlayerLocation.x] == 1) {
+                    location.x = initPlayerLoc.x;
+                    location.y = initPlayerLoc.y;
+                    Transform.relativePlayerLocation.x = initRelLoc.x;
+                    Transform.relativePlayerLocation.y = initRelLoc.y;
+                }
+
+
+
+
 
             // Manually setting the below bool variables so our background movement component moves only when player does..
             if (velocity.x > 0) {
@@ -38,8 +98,8 @@ class PlayerMovementComponent implements MovementComponent {
         }
 
         // Keeping player constrained to screen size..
-
-        if (location.y > (screenHeight - (t.getObjectHeight() / 2))) {
+        /*
+                if (location.y > (screenHeight - (t.getObjectHeight() / 2))) {
             location.y = screenHeight - (t.getObjectHeight() / 2);
         }
 
@@ -55,9 +115,31 @@ class PlayerMovementComponent implements MovementComponent {
             location.x = 0;
         }
 
+         */
+
+
+
         t.updateCollider();
 
         return true;
 
     }
+
+     void testTransform(){
+
+
+         String line = "";
+
+         for(int i=0; i<32; i++){
+            for(int j=0; i<32; i++){
+                line += String.valueOf(gameMap.mMapMatrix[i][j]);
+            }
+                line+="\n";
+
+         }
+            Log.d("matrix",line);
+     }
+
+
+
 }

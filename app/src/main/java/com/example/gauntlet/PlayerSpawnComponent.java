@@ -7,8 +7,8 @@ class PlayerSpawnComponent implements SpawnComponent {
 
         // Spawn in the centre of the screen
         t.setLocation(
-                t.getmScreenSize().x/2,
-                t.getmScreenSize().y/2);
+                5120 /2,
+                5120 / 2);
 
 
     }
