@@ -31,6 +31,9 @@ class Level {
     private static final int MAP_ROWS = 32;
     private static final int MAP_COLS = 32;
 
+    // Boolean value to check if the level is ready to move on
+    public static boolean isLevelFinished = false;
+
     // track all dungeon maps
     Context appContext;
     public static int currentDungeon = 1;
@@ -101,6 +104,7 @@ class Level {
         }
         mNextAlienArrow = FIRST_ALIEN_ARROW;
 
+        // create passkey
         objects.add(PASSKEY_INDEX, factory
                 .create(new PassKeySpec()));
 
