@@ -159,12 +159,19 @@ class Transform {
     void updateCollider(){
         // Pull the borders in a bit (10%)
         mCollider.top = mLocation.y + (mObjectHeight / 10);
-        mCollider.left = mLocation.x + (mObjectWidth /10);
-        mCollider.bottom = (mCollider.top + mObjectHeight)
-                - mObjectHeight/10;
 
+        mCollider.left = mLocation.x + (mObjectWidth /10);
+       // mCollider.bottom = (mCollider.top + mObjectHeight)
+            //    - mObjectHeight/10;
+
+        mCollider.bottom = (mCollider.top + (float)(mObjectHeight * .90));
+        /*
         mCollider.right = (mCollider.left + mObjectWidth)
                 -  mObjectWidth/10;
+         */
+
+        mCollider.right = (mCollider.left + (mObjectWidth / 3));
+
     }
 
     float getObjectHeight(){
@@ -192,8 +199,8 @@ class Transform {
     }
 
     PointF getSize(){
-        return new PointF((int)mObjectWidth,
-                (int)mObjectHeight);
+        return new PointF(mObjectWidth,
+                mObjectHeight);
     }
 
     void flip(){

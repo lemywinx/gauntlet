@@ -42,14 +42,27 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
 
         Canvas canvas = new Canvas(GameData.mainBitmap);
         canvas.drawBitmap(mBitmap, 0f, 0f, null);
+        Paint paint = new Paint();
+        paint.setColor(Color.argb(255, 255, 255, 255));
 
 
-        for (int i = 0; i < gameMap.obstacleContainer.size(); i++) {
+         for (int i = 0; i < gameMap.obstacleContainer.size(); i++) {
            canvas.drawBitmap(wallBitmap,
                    gameMap.obstacleContainer.get(i).location.left,
                    gameMap.obstacleContainer.get(i).location.top,
                    null);
         }
+
+    /*
+     for (int i = 0; i < gameMap.obstacleContainer.size(); i++) {
+            canvas.drawBitmap(
+                    gameMap.obstacleContainer.get(i).location.left, gameMap.obstacleContainer.get(i).location.top,
+                    gameMap.obstacleContainer.get(i).location.right, gameMap.obstacleContainer.get(i).location.bottom,
+                    paint);
+        }
+     */
+
+
 
 
     }

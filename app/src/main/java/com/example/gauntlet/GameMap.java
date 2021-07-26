@@ -9,12 +9,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class GameMap {
     public static int[][] mMapMatrix;
     private static  int MAP_ROWS;
     private static  int MAP_COLS;
-    public ArrayList<Obstacle> obstacleContainer = new ArrayList<Obstacle>();
+    public static Hashtable<Point, RectF> gameHashTable = new Hashtable<>();
+
+    public static ArrayList<Obstacle> obstacleContainer = new ArrayList<Obstacle>();
     private Point lowResFactor;
 
     GameMap(Context c) {
@@ -38,14 +41,16 @@ public class GameMap {
                 Log.d("Sprint",line + " Size \t" + line.length());
                 String[] stringArray = line.split(" ");
                 Log.d("Array-L",String.valueOf(stringArray.length));
+                RectF obstacleRect;
                 for( int i=0; i<stringArray.length; i++ ){
                     mMapMatrix[currentRow][i] = Integer.parseInt(stringArray[i]);
                     if (mMapMatrix[currentRow][i] == 1) {
-
+                                obstacleRect = new RectF(((i * lowResFactor.x)), (currentRow * lowResFactor.y),
+                                        (i * lowResFactor.x) + 160, (currentRow * lowResFactor.y) + 160);
 //                        if(count++ == 0){
-
-                        obstacleContainer.add(new Obstacle(new RectF(((i * lowResFactor.x)), (currentRow * lowResFactor.y),
-                                (i * lowResFactor.x) + 160, (currentRow * lowResFactor.y) + 160)));
+                        // Pass in the RectF and Point
+                        obstacleContainer.add(new Obstacle(obstacleRect));
+                        gameHashTable.put(new Point(currentRow,i), obstacleRect);
 
                         Log.d("obstacle-location" + ++count, String.valueOf("("+ (i * lowResFactor.x) + "," + (currentRow * lowResFactor.y) + "i"));
 //                        }

@@ -32,9 +32,11 @@ class BackgroundMovementComponent implements MovementComponent {
         /*
 
          */
+
+        /*
          if ((playerLocation.x - mPlayerPadding.x) < 0) {
             left = 0;
-            right = (int)(mPlayerPadding.x * 2);
+            right = (int)(mPlayerPadding.x);
 
         }
 
@@ -70,6 +72,15 @@ class BackgroundMovementComponent implements MovementComponent {
                 bottom = (int)(playerLocation.y + mPlayerPadding.y);
 //
             }
+
+         */
+
+            right = (int)(playerLocation.x + mPlayerPadding.x);
+            left = (int)(playerLocation.x - mPlayerPadding.x);
+            top = (int)(playerLocation.y - mPlayerPadding.y);
+            bottom = (int)(playerLocation.y + mPlayerPadding.y);
+
+
 
         GameData.visibleScreenRect.top = top;
         GameData.visibleScreenRect.bottom = bottom;
