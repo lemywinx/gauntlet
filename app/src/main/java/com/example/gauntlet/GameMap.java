@@ -1,6 +1,7 @@
 package com.example.gauntlet;
 
 import android.content.Context;
+import android.graphics.Point;
 import android.graphics.RectF;
 import android.util.Log;
 
@@ -11,11 +12,19 @@ import java.util.ArrayList;
 
 public class GameMap {
     public static int[][] mMapMatrix;
-    private static final int MAP_ROWS = 32;
-    private static final int MAP_COLS = 32;
+    private static  int MAP_ROWS;
+    private static  int MAP_COLS;
     public ArrayList<Obstacle> obstacleContainer = new ArrayList<Obstacle>();
+    private Point lowResFactor;
 
     GameMap(Context c) {
+        lowResFactor = new Point(GameData.LOWRES_CONV_FACTOR_X,
+                                 GameData.LOWRES_CONV_FACTOR_X);
+
+        MAP_ROWS = GameData.ROWS;
+        MAP_COLS = GameData.COLS;
+
+        
         mMapMatrix = new int[MAP_ROWS][MAP_COLS];
         int currentRow = 0;
         String line;
@@ -26,17 +35,19 @@ public class GameMap {
                             Level.dungeonMaps[1])));
 
             while( (line = reader.readLine()) != null){
+                Log.d("Sprint",line + " Size \t" + line.length());
                 String[] stringArray = line.split(" ");
+                Log.d("Array-L",String.valueOf(stringArray.length));
                 for( int i=0; i<stringArray.length; i++ ){
                     mMapMatrix[currentRow][i] = Integer.parseInt(stringArray[i]);
                     if (mMapMatrix[currentRow][i] == 1) {
 
 //                        if(count++ == 0){
 
-                        obstacleContainer.add(new Obstacle(new RectF(((i * Transform.lowResConversionFactor.x)), (currentRow * Transform.lowResConversionFactor.y),
-                                (i * Transform.lowResConversionFactor.x) + 32, (currentRow * Transform.lowResConversionFactor.y) + 32)));
+                        obstacleContainer.add(new Obstacle(new RectF(((i * lowResFactor.x)), (currentRow * lowResFactor.y),
+                                (i * lowResFactor.x) + 160, (currentRow * lowResFactor.y) + 160)));
 
-                        Log.d("obstacle-location" + ++count, String.valueOf("("+ (i * Transform.lowResConversionFactor.x) + "," + (currentRow * Transform.lowResConversionFactor.y) + "i"));
+                        Log.d("obstacle-location" + ++count, String.valueOf("("+ (i * lowResFactor.x) + "," + (currentRow * lowResFactor.y) + "i"));
 //                        }
 
                     }

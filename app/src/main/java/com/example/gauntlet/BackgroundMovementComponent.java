@@ -1,11 +1,10 @@
 package com.example.gauntlet;
 
 import android.graphics.PointF;
-import android.graphics.RectF;
 
 class BackgroundMovementComponent implements MovementComponent {
     PointF mPlayerPadding;
-    public static RectF backgroundPortionToDraw1;
+    public static boolean atEdge = false;
 
     BackgroundMovementComponent() {
         mPlayerPadding = new PointF(0, 0);
@@ -17,10 +16,9 @@ class BackgroundMovementComponent implements MovementComponent {
                         Transform playerTransform) {
 
         PointF screenSize = t.getmScreenSize();
-        mPlayerPadding.x = 5120 / 10;
-        mPlayerPadding.y = 5120 / 10;
-        RectF backgroundPortionToDraw = t.getCollider();
-        backgroundPortionToDraw1 = backgroundPortionToDraw;
+        mPlayerPadding.x = GameData.IMAGE_RESOLUTION_X / 10;
+        mPlayerPadding.y = GameData.IMAGE_RESOLUTION_Y / 10;
+        GameData.visibleScreenRect = t.getCollider();
 
         int width = 5120;
         int height = 5120;
@@ -31,9 +29,10 @@ class BackgroundMovementComponent implements MovementComponent {
         int bottom = 0;
 
         // TO DO: Redefine how we are going about below with player location in 5120 map..
-
         /*
-                  if ((playerLocation.x - mPlayerPadding.x) < 0) {
+
+         */
+         if ((playerLocation.x - mPlayerPadding.x) < 0) {
             left = 0;
             right = (int)(mPlayerPadding.x * 2);
 
@@ -72,24 +71,10 @@ class BackgroundMovementComponent implements MovementComponent {
 //
             }
 
-         */
-
-        right = (int)(playerLocation.x + mPlayerPadding.x);
-        left = (int)(playerLocation.x - mPlayerPadding.x);
-        top = (int)(playerLocation.y - mPlayerPadding.y);
-        bottom = (int)(playerLocation.y + mPlayerPadding.y);
-
-
-
-
-            top = (int)(playerLocation.y - mPlayerPadding.y);
-            bottom = (int)(playerLocation.y + mPlayerPadding.y);
-
-        backgroundPortionToDraw.top = top;
-        backgroundPortionToDraw.bottom = bottom;
-        backgroundPortionToDraw.left = left;
-        backgroundPortionToDraw.right = right;
-
+        GameData.visibleScreenRect.top = top;
+        GameData.visibleScreenRect.bottom = bottom;
+        GameData.visibleScreenRect.left = left;
+        GameData.visibleScreenRect.right = right;
 
         return true;
     }

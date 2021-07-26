@@ -13,10 +13,11 @@ class PlayerMovementComponent implements MovementComponent {
     Point initRelLoc = new Point(0, 0);
     PointF initXYTracker = new PointF(0, 0);
     PointF initPlayerLoc = new PointF(0, 0);
+    public static PointF screenLocation = new PointF();
     GameMap gameMap;
     Context context;
 
-    PlayerMovementComponent(Context c) {
+    PlayerMovementComponent(Context c, PointF screenSize) {
        context = c;
         gameMap = new GameMap(c);
         screenLocation.x = screenSize.x / 2;
@@ -69,24 +70,18 @@ class PlayerMovementComponent implements MovementComponent {
             // Use entire large bitmap and track the player's location within it.
             // From rect based off where you are in the entire map.
 
-                Log.d("Error",Transform.relativePlayerLocation.x +" , " + Transform.relativePlayerLocation.y);
+                Log.d("Error",Transform.relativePlayerLocation.y +" , " + Transform.relativePlayerLocation.x);
+                Log.d("location",location.x +" , " + location.y);
 
-                try{
-                System.out.println("COORD: " + Transform.relativePlayerLocation.y + "," + Transform.relativePlayerLocation.x +
-                        " - " + GameMap.mMapMatrix[Transform.relativePlayerLocation.x][Transform.relativePlayerLocation.y]);
 
-                }catch (Exception e){
-
-                }
-
-                /*
-                    if (gameMap.mMapMatrix[Transform.relativePlayerLocation.y][Transform.relativePlayerLocation.x] == 0) {
+                        // Handle Collision
+                    if (gameMap.mMapMatrix[Transform.relativePlayerLocation.y][Transform.relativePlayerLocation.x] == 1) {
                     location.x = initPlayerLoc.x;
                     location.y = initPlayerLoc.y;
                     Transform.relativePlayerLocation.x = initRelLoc.x;
                     Transform.relativePlayerLocation.y = initRelLoc.y;
                 }
-                 */
+
 
 
 
@@ -103,8 +98,8 @@ class PlayerMovementComponent implements MovementComponent {
         }
 
         // Keeping player constrained to screen size..
-
-            if (location.y > (screenHeight - (t.getObjectHeight() / 2))) {
+        /*
+                if (location.y > (screenHeight - (t.getObjectHeight() / 2))) {
             location.y = screenHeight - (t.getObjectHeight() / 2);
         }
 
@@ -119,6 +114,8 @@ class PlayerMovementComponent implements MovementComponent {
         else if (location.x < 0) {
             location.x = 0;
         }
+
+         */
 
 
 
