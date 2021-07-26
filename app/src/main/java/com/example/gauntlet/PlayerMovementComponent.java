@@ -70,17 +70,11 @@ class PlayerMovementComponent implements MovementComponent {
             // Use entire large bitmap and track the player's location within it.
             // From rect based off where you are in the entire map.
 
-                Log.d("Error",Transform.relativePlayerLocation.x +" , " + Transform.relativePlayerLocation.y);
+                Log.d("Error",Transform.relativePlayerLocation.y +" , " + Transform.relativePlayerLocation.x);
+                Log.d("location",location.x +" , " + location.y);
 
-                try{
-                System.out.println("COORD: " + Transform.relativePlayerLocation.y + "," + Transform.relativePlayerLocation.x +
-                        " - " + GameMap.mMapMatrix[Transform.relativePlayerLocation.x][Transform.relativePlayerLocation.y]);
 
-                }catch (Exception e){
-
-                }
-
-                
+                        // Handle Collision
                     if (gameMap.mMapMatrix[Transform.relativePlayerLocation.y][Transform.relativePlayerLocation.x] == 1) {
                     location.x = initPlayerLoc.x;
                     location.y = initPlayerLoc.y;

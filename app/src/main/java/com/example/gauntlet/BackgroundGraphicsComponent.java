@@ -70,9 +70,6 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
 
             canvas.drawBitmap(GameData.mainBitmap, fromRect1, toRect1, paint);
             //canvas.drawBitmap(mBitmap, fromRect1, toRect1, paint);
-
-
-
         }
 
         else {
@@ -81,7 +78,7 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
                     (int)backgroundPortionToDraw.right, (int)backgroundPortionToDraw.bottom);
 
                 // To keep the aspect ratio same, width is passed twice
-            Rect toRect1 = new Rect(0, 0, width, width);
+            Rect toRect1 = new Rect(0, 0, width, height);
 
             // Note: Choose your own size for the map..
             canvas.drawBitmap(GameData.mainBitmap,fromRect1, toRect1, paint);

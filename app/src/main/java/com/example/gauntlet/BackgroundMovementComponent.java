@@ -1,7 +1,6 @@
 package com.example.gauntlet;
 
 import android.graphics.PointF;
-import android.graphics.RectF;
 
 class BackgroundMovementComponent implements MovementComponent {
     PointF mPlayerPadding;
