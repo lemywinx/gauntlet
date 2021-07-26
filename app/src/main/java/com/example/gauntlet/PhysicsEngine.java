@@ -87,6 +87,10 @@ class PhysicsEngine {
 
                                     break;
 
+                                case "Player with PassKey":
+                                    Log.d("Player", " ");
+                                    break;
+
                                 default:
                                     break;
                             }
