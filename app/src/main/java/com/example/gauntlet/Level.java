@@ -19,10 +19,10 @@ class Level {
     public static final int LAST_PLAYER_ARROW = 4;
     public static int mNextPlayerArrow;
     public static final int FIRST_ALIEN = 5;
-
-    public static final int LAST_ALIEN = 5;
-    public static final int FIRST_ALIEN_ARROW = 6;
-    public static final int LAST_ALIEN_ARROW = 10;
+    public static final int GOBLIN = 6;
+    public static final int LAST_ALIEN = 6;
+    public static final int FIRST_ALIEN_ARROW = 7;
+    public static final int LAST_ALIEN_ARROW = 11;
     public static int mNextAlienArrow;
     public static int[][] mMapMatrix;
     private static final int MAP_ROWS = 32;
@@ -82,6 +82,9 @@ class Level {
         objects.add(FIRST_ALIEN, factory
                 .create(new GhostChaseSpec()));
 
+        //Create goblin
+        objects.add(GOBLIN, factory.create(new GoblinSpec()));
+
         // Create some alien Arrows
         for (int i = FIRST_ALIEN_ARROW; i != LAST_ALIEN_ARROW + 1; i++) {
             objects.add(i, factory
@@ -117,7 +120,6 @@ class Level {
                     }
 
                 }
-
                 currentRow++;
 
                 Log.d("map-row", String.valueOf(currentRow));

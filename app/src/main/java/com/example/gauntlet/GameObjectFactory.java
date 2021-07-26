@@ -78,14 +78,19 @@ class GameObjectFactory {
                     break;
 
                 case "GhostChaseMovementComponent":
-                    object.setMovement(
-                            new GhostChaseMovementComponent(
-                                    mGameEngineReference));
+                    object.setMovement(new GhostChaseMovementComponent(mGameEngineReference));
                     break;
 
                 case "GhostSpawnComponent":
-                    object.setSpawner(
-                            new GhostSpawnComponent());
+                    object.setSpawner(new GhostSpawnComponent());
+                    break;
+
+                case "GoblinMovementComponent":
+                    object.setMovement(new GoblinMovementComponent(mGameEngineReference));
+                    break;
+
+                case "GoblinSpawnComponent":
+                    object.setSpawner(new GoblinSpawnComponent());
                     break;
 
                 default:
