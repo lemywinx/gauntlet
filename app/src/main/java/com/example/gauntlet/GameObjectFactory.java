@@ -136,6 +136,11 @@ class GameObjectFactory {
                             new DoorSpawnComponent());
                     break;
 
+                case "PowerUpSpawnComponent":
+                    object.setSpawner(new PowerUpSpawnComponent());
+                    break;
+
+
                 default:
                     // Error unidentified component
                     System.out.println("NOT LOADEDED PROPERLY");
