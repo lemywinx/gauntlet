@@ -28,8 +28,8 @@ public class AnimationComponent extends SpriteGraphicsComponent{
         }
 
         switch (s.getBitmapName()){
-            case "player_standing":
-                for (int i = 0; i < 21; i++){
+            case "player":
+                for (int i = 0; i < 24; i++){
                     tempBitmap = generateSprite(c, s, i, inputStream);
                     animationList.add(tempBitmap);
                 }

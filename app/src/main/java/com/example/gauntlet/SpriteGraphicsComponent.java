@@ -85,19 +85,11 @@ public class SpriteGraphicsComponent implements GraphicsComponent{
 
     @Override
     public void draw(Canvas canvas, Paint paint, Transform t) {
-        if (t.getFacingRight()) {
-            canvas.drawBitmap(mBitmap,
-                    t.getLocation().x,
-                    t.getLocation().y,
-                    paint);
-        }
 
-        else {
-            canvas.drawBitmap(mBitmapReversed,
-                    t.getLocation().x,
-                    t.getLocation().y,
-                    paint);
-        }
+        canvas.drawBitmap(mBitmap,
+                t.getLocation().x,
+                t.getLocation().y,
+                paint);
 
     }
 

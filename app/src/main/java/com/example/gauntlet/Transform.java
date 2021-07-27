@@ -98,6 +98,7 @@ class Transform {
         mFacingRight = false;
     }
 
+
     boolean headingUp(){
         return mHeadingUp;
     }
@@ -145,6 +146,8 @@ class Transform {
         mLocation = new PointF(horizontal, vertical);
         updateCollider();
     }
+
+    double getAngle() { return mAngle; }
 
 
     PointF getLocation() {
