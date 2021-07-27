@@ -9,7 +9,7 @@ public class PowerUpSpec extends ObjectSpec {
     private static final PointF relativeScale = new PointF(18f, 18f);
 
     private static final String[] components = new String[] {
-            "SimpleMovementComponent",
+            "NPCGraphicsComponent",
             "StdGraphicsComponent",
             "PowerUpSpawnComponent"
     };

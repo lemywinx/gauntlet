@@ -132,9 +132,6 @@ class GameObjectFactory {
                     object.setSpawner(new PowerUpSpawnComponent());
                     break;
 
-                case "SimpleMovementComponent":
-                    object.setMovement(new SimpleMovementComponent());
-                    break;
 
                 default:
                     // Error unidentified component
