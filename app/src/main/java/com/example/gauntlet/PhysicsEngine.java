@@ -65,6 +65,7 @@ class PhysicsEngine {
                                     break;
                                 case "Player with PassKey":
                                     Log.d("Player", " ");
+                                    Level.isLevelFinished = true;
                                     break;
 
                                 default:
