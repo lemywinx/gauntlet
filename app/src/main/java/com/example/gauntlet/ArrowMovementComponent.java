@@ -10,23 +10,30 @@ class ArrowMovementComponent implements MovementComponent {
                         Transform playerTransform) {
 
         // Arrow can only travel two screen widths
-        float range = t.getmScreenSize().x * 2;
+        //float rightRange = playerTransform.getLocation().x + (GameData.IMAGE_RESOLUTION_X / 10);
+        //float leftRange = playerTransform.getLocation().x - (GameData.IMAGE_RESOLUTION_X / 10);
+
+        float range = 5120;
 
         // Where is the arrow
         PointF location = t.getLocation();
 
         // How fast is it going
-        float speed = t.getSpeed().x;
+        float speed = 5120 / 3;
+        float drawSpeed = t.getmScreenSize().x / 3;
+
 
         if(t.headingRight()){
             location.x += speed / fps;
+            t.drawableLocation.x += drawSpeed / fps;
         }
         else if(t.headingLeft()){
             location.x -= speed / fps;
+            t.drawableLocation.x -= drawSpeed / fps;
         }
 
         // Has the arrow gone out of range
-        if(location.x < - range || location.x > range){
+        if(location.x < -range|| location.x > range){
             // disable the arrow
             return false;
         }

@@ -23,6 +23,7 @@ class BackgroundMovementComponent implements MovementComponent {
         int width = 5120;
         int height = 5120;
         PointF playerLocation = playerTransform.getLocation();
+        System.out.println("Player Location: " + playerTransform.getLocation().x + "," + playerTransform.getLocation().y);
         int left = 0;
         int right = 0;
         int top = 0;
@@ -32,9 +33,11 @@ class BackgroundMovementComponent implements MovementComponent {
         /*
 
          */
+
+        /*
          if ((playerLocation.x - mPlayerPadding.x) < 0) {
             left = 0;
-            right = (int)(mPlayerPadding.x * 2);
+            right = (int)(mPlayerPadding.x);
 
         }
 
@@ -70,6 +73,15 @@ class BackgroundMovementComponent implements MovementComponent {
                 bottom = (int)(playerLocation.y + mPlayerPadding.y);
 //
             }
+
+         */
+
+            right = (int)(playerLocation.x + mPlayerPadding.x);
+            left = (int)(playerLocation.x - mPlayerPadding.x);
+            top = (int)(playerLocation.y - mPlayerPadding.y);
+            bottom = (int)(playerLocation.y + mPlayerPadding.y);
+
+
 
         GameData.visibleScreenRect.top = top;
         GameData.visibleScreenRect.bottom = bottom;
