@@ -2,6 +2,7 @@ package com.example.gauntlet;
 
 import android.graphics.PointF;
 import android.graphics.RectF;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -54,12 +55,20 @@ class PhysicsEngine {
                                 case "Player with Alien Arrow":
 
                                 case "Player with Alien":
+
+                                case "Player with Troll":
+
+                                case "Player with Goblin":
                                     playerHit = true;
                                     mGameState.loseLife(se);
-
                                     break;
 
+
                                 case "Player Arrow with Alien":
+
+                                case "Player Arrow with Goblin":
+
+                                case "playerArrow with Troll":
                                     mGameState.increaseScore();
                                     // Respawn the alien
                                     go2.setInactive();
@@ -68,7 +77,10 @@ class PhysicsEngine {
 
                                     go1.setInactive();
                                     se.playAlienExplode();
+                                    break;
 
+                                case "Player with PassKey":
+                                    Log.d("Player", " ");
                                     break;
 
                                 default:

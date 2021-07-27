@@ -42,6 +42,8 @@ class StdGraphicsComponent implements GraphicsComponent {
                 mBitmap.getWidth(),
                 mBitmap.getHeight(),
                 matrix, true);
+
+
     }
 
     @Override
@@ -53,18 +55,44 @@ class StdGraphicsComponent implements GraphicsComponent {
     public void draw(Canvas canvas,
                      Paint paint,
                      Transform t) {
+        // Note: t.getLocation().x
 
-        if(t.getFacingRight())
+
+
+        if (t.getFacingRight()) {
+            if (BackgroundMovementComponent.atEdge) {
+                canvas.drawBitmap(mBitmap,
+                        PlayerMovementComponent.screenLocation.x,
+                        PlayerMovementComponent.screenLocation.y,
+                        paint);
+            }
+
+            else
             canvas.drawBitmap(mBitmap,
-                    t.getLocation().x,
-                    t.getLocation().y,
+                    t.getmScreenSize().x / 2,
+                    t.getmScreenSize().y / 2,
                     paint);
 
-        else
-            canvas.drawBitmap(mBitmapReversed,
-                    t.getLocation().x,
-                    t.getLocation().y,
-                    paint);
+        }
+
+        else{
+
+            if (!BackgroundMovementComponent.atEdge) {
+                canvas.drawBitmap(mBitmapReversed,
+                        t.getmScreenSize().x / 2,
+                        t.getmScreenSize().y / 2,
+                        paint);
+            }
+
+            else {
+                canvas.drawBitmap(mBitmapReversed,
+                        PlayerMovementComponent.screenLocation.x,
+                        PlayerMovementComponent.screenLocation.y,
+                        paint);
+            }
+
+
+        }
 
 
     }

@@ -2,6 +2,7 @@ package com.example.gauntlet;
 
 import android.content.Context;
 import android.graphics.PointF;
+import android.graphics.RectF;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -14,14 +15,17 @@ class Level {
     // Keep track of specific types
     public static final int BACKGROUND_INDEX = 0;
     public static final int PLAYER_INDEX = 1;
+    public static final int PASSKEY_INDEX = 11;
     public static final int FIRST_PLAYER_ARROW = 2;
     public static final int LAST_PLAYER_ARROW = 4;
     public static int mNextPlayerArrow;
     public static final int FIRST_ALIEN = 5;
+    public static final int LAST_ALIEN = 6;
+    public static final int GOBLIN = 6;
+    public static final int TROLL = 7;
 
-    public static final int LAST_ALIEN = 5;
-    public static final int FIRST_ALIEN_ARROW = 6;
-    public static final int LAST_ALIEN_ARROW = 10;
+    public static final int FIRST_ALIEN_ARROW = 8;
+    public static final int LAST_ALIEN_ARROW = 12;
     public static int mNextAlienArrow;
     public static int[][] mMapMatrix;
     private static final int MAP_ROWS = 32;
@@ -31,6 +35,7 @@ class Level {
     Context appContext;
     public static int currentDungeon = 1;
     public static final int lastDungeon = 1;
+    public static ArrayList<Obstacle> obstacleContainer = new ArrayList<Obstacle>();
 
     // keep dungeonMaps[0] empty because dungeon levels start at 1
     public static final String[] dungeonMaps = {
@@ -80,6 +85,15 @@ class Level {
         objects.add(FIRST_ALIEN, factory
                 .create(new GhostChaseSpec()));
 
+        //Create goblin
+        objects.add(GOBLIN, factory.create(new GoblinSpec()));
+
+        //Create Troll
+        objects.add(TROLL,factory.create(new TrollSpec()));
+
+
+
+
         // Create some alien Arrows
         for (int i = FIRST_ALIEN_ARROW; i != LAST_ALIEN_ARROW + 1; i++) {
             objects.add(i, factory
@@ -87,6 +101,8 @@ class Level {
         }
         mNextAlienArrow = FIRST_ALIEN_ARROW;
 
+        objects.add(PASSKEY_INDEX, factory
+                .create(new PassKeySpec()));
 
         return objects;
     }
@@ -108,15 +124,17 @@ class Level {
                 String[] stringArray = line.split(" ");
                 for( int i=0; i<stringArray.length; i++ ){
                     mMapMatrix[currentRow][i] = Integer.parseInt(stringArray[i]);
+                    if (mMapMatrix[currentRow][i] == 0) {
+
+                        obstacleContainer.add(new Obstacle(new RectF(i * 16, (currentRow * 16), (i * 16) + 15, (currentRow * 16) + 15)));
+
+                    }
+
                 }
                 currentRow++;
 
                 Log.d("map-row", String.valueOf(currentRow));
 
-                for(int i=0; i<32; i++){
-                    String temp = " Col: " + i + "\t Val: " +mMapMatrix[2][i] ;
-                    Log.d("map-col", temp);
-                }
             }
 
         } catch (IOException ex) {

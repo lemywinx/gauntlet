@@ -1,5 +1,6 @@
 package com.example.gauntlet;
 
+import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.RectF;
 
@@ -23,6 +24,11 @@ class Transform {
     private boolean availableToMove = false;
     private double mAngle;
     private PointF mVectorComponents;
+    public static Point relativePlayerLocation = new Point(0, 0);
+    public static PointF lowResConversionFactor = new PointF(0, 0);
+    public static PointF screenResConversionFactor = new PointF(0, 0);
+    public static int numObjects = 0;
+    public static Point bitmapRes;
 
     Transform(float speed, float objectWidth,
               float objectHeight,
@@ -34,10 +40,32 @@ class Transform {
         mObjectWidth = objectWidth;
         mLocation = startingLocation;
         mScreenSize = screenSize;
+
+        bitmapRes = new Point(GameData.IMAGE_RESOLUTION_X, GameData.IMAGE_RESOLUTION_Y);
+
+        lowResConversionFactor.x = GameData.LOWRES_CONV_FACTOR_X;
+        lowResConversionFactor.y = GameData.LOWRES_CONV_FACTOR_Y;
+
+        screenResConversionFactor.x = GameData.IMAGE_RESOLUTION_X / mScreenSize.x;
+        screenResConversionFactor.y = GameData.IMAGE_RESOLUTION_Y / mScreenSize.y;
+
+        if (numObjects == 1) {
+            //relativePlayerLocation.x = ((int)(mScreenSize.x / lowResConversionFactor.x) / 2) - 1;
+            //relativePlayerLocation.y = ((int)(mScreenSize.y / lowResConversionFactor.y) / 2) - 1;
+            Transform.relativePlayerLocation.x = (int)((bitmapRes.x / lowResConversionFactor.x) / 2) - 1;
+            Transform.relativePlayerLocation.y =(int)((bitmapRes.y / lowResConversionFactor.y) / 2) - 1;
+            //lowResConversionFactor.x = BackgroundGraphicsComponent.bitmapNew.getWidth() / 32;
+            //lowResConversionFactor.y = BackgroundGraphicsComponent.bitmapNew.getWidth() / 32;
+
+            System.out.println("STARTING: " + Transform.relativePlayerLocation.x + "," + Transform.relativePlayerLocation.y);
+        }
+
+
         // Adjusting speeds for horizontal/vertical movement to be the same considering non-square resolution..
         // Below will be changed.. Quick fix for code review.
+        numObjects++;
 
-        mSpeed = new PointF(mScreenSize.x / speed, mScreenSize.x / speed);
+        mSpeed = new PointF(bitmapRes.x / speed, bitmapRes.y / speed);
         mVectorComponents = new PointF(0, 0);
     }
 
@@ -47,6 +75,17 @@ class Transform {
 
     void resetMovementAvailability() {
         availableToMove = false;
+    }
+
+    static void resetRelativeLocation() {
+        //relativePlayerLocation.x = ((int)(mScreenSize.x / lowResConversionFactor.x) / 2) -1;
+        //relativePlayerLocation.y =
+        relativePlayerLocation.x = (int)((bitmapRes.x / lowResConversionFactor.x) / 2) - 1;
+        relativePlayerLocation.y = (int)((bitmapRes.y / lowResConversionFactor.y) / 2) - 1;
+        //System.out.println("STARTING: " + Transform.relativePlayerLocation.x + "," + Transform.relativePlayerLocation.y);
+
+        PlayerMovementComponent.XYTracker.x = 0;
+        PlayerMovementComponent.XYTracker.y = 0;
     }
 
     void setAngle(double angle) {

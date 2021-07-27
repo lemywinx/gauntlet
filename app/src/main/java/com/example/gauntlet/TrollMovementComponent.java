@@ -2,11 +2,8 @@ package com.example.gauntlet;
 
 import android.graphics.PointF;
 import java.util.Random;
-
-class GhostChaseMovementComponent implements MovementComponent {
-
-
-    GhostChaseMovementComponent(AlienArrowSpawner als){
+public class TrollMovementComponent implements MovementComponent{
+    TrollMovementComponent(AlienArrowSpawner als){
 
     }
 
@@ -21,7 +18,7 @@ class GhostChaseMovementComponent implements MovementComponent {
 
         float speed = (float)(t.getSpeed().x / 2.5);
 
-        // Prevent the ship locking on too accurately
+        // Prevent the troll locking on too accurately
         float verticalSearchBounce = 20f;
 
         // move in the direction of the player horizontally

@@ -3,10 +3,11 @@ package com.example.gauntlet;
 import android.graphics.PointF;
 import java.util.Random;
 
-class GhostChaseMovementComponent implements MovementComponent {
+public class GoblinMovementComponent implements MovementComponent{
 
 
-    GhostChaseMovementComponent(AlienArrowSpawner als){
+
+    GoblinMovementComponent(AlienArrowSpawner als){
 
     }
 
