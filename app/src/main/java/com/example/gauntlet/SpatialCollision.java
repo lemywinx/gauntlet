@@ -11,7 +11,7 @@ public class SpatialCollision {
 
     // 5120/4 = 1280
     private final int GRID_DIMENSION = GameData.IMAGE_RESOLUTION_X/4 ;
-    public static ArrayList<RectF> gridRects= new ArrayList<RectF>();
+    public static ArrayList<RectF> gridRects = new ArrayList<RectF>();
     public static ArrayList<ArrayList<RectF>> gridWalls = new ArrayList<ArrayList<RectF>>(16);
 
 

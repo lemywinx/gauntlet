@@ -19,14 +19,16 @@ class GhostChaseMovementComponent implements MovementComponent {
 
         PointF location = t.getLocation();
 
-        float speed = (float)(t.getSpeed().x / 2.5);
+        float speed = (float)(t.getmScreenSize().x / 15);
 
         // Prevent the ship locking on too accurately
         float verticalSearchBounce = 20f;
 
         // move in the direction of the player horizontally
         // but relative to the player's direction of travel
-        if (location.x < playerLocation.x) {
+
+
+         if (location.x < playerLocation.x) {
             t.headRight();
         } else if (location.x > playerLocation.x) {
             t.headLeft();
@@ -40,6 +42,8 @@ class GhostChaseMovementComponent implements MovementComponent {
                 > verticalSearchBounce) {
             t.headUp();
         }
+
+
 
 
         //move vertically

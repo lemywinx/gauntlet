@@ -59,6 +59,12 @@ class GameObjectFactory {
                 case "ArrowMovementComponent":
                     object.setMovement(new ArrowMovementComponent());
                     break;
+
+                case "NPCGraphicsComponent":
+                    object.setGraphics(new NPCGraphicsComponent(), mContext, spec, objectSize);
+
+                    break;
+
                 case "PlayerSpawnComponent":
                     object.setSpawner(new PlayerSpawnComponent());
                     break;

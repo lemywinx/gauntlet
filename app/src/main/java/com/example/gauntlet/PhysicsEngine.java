@@ -54,8 +54,8 @@ class PhysicsEngine {
                                 case "Player with Alien Arrow":
 
                                 case "Player with Alien":
-                                    playerHit = true;
-                                    mGameState.loseLife(se);
+//                                    playerHit = true;
+//                                    mGameState.loseLife(se);
 
                                     break;
 

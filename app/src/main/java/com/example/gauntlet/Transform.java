@@ -29,6 +29,9 @@ class Transform {
     public static PointF screenResConversionFactor = new PointF(0, 0);
     public static int numObjects = 0;
     public static Point bitmapRes;
+    public PointF overallLocation;
+
+
 
     Transform(float speed, float objectWidth,
               float objectHeight,
@@ -45,6 +48,8 @@ class Transform {
 
         lowResConversionFactor.x = GameData.LOWRES_CONV_FACTOR_X;
         lowResConversionFactor.y = GameData.LOWRES_CONV_FACTOR_Y;
+
+
 
         screenResConversionFactor.x = GameData.IMAGE_RESOLUTION_X / mScreenSize.x;
         screenResConversionFactor.y = GameData.IMAGE_RESOLUTION_Y / mScreenSize.y;

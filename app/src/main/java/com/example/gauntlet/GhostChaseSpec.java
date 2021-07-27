@@ -12,7 +12,7 @@ class GhostChaseSpec extends ObjectSpec {
             new PointF(15f, 15f);
 
     private static final String[] components = new String [] {
-            "StdGraphicsComponent",
+            "NPCGraphicsComponent",
             "GhostChaseMovementComponent",
             "GhostSpawnComponent"};
 
