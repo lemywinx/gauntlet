@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import com.example.gauntlet.PlayerAnimationComponent;
 
 import java.util.ArrayList;
 

@@ -21,6 +21,8 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
             GameData.LOWRES_CONV_FACTOR_Y
     );
 
+    @Override
+    public void setBitmap(Bitmap bitmap) { }
 
     // Draw on top of original bitmap..
     // Use low res map and draw original wall/stationary structure upon initialization.
@@ -54,11 +56,6 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
 
     }
 
-
-    @Override
-    public void initialize(Context c, ObjectSpec s, PointF screenSize, PointF positon) {
-
-    }
 
     @Override
     public void draw(Canvas canvas, Paint paint, Transform m) {

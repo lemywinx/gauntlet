@@ -14,6 +14,7 @@ class GameObject {
     private GraphicsComponent graphicsComponent;
     private MovementComponent movementComponent;
     private SpawnComponent spawnComponent;
+    private AnimationComponent animationComponent = null;
 
     void setSpawner(SpawnComponent s) {
         spawnComponent = s;
@@ -26,11 +27,9 @@ class GameObject {
         g.initialize(c, spec, objectSize);
     }
 
-    void setGraphics(GraphicsComponent g, Context c,
-                     ObjectSpec spec, PointF objectSize,
-                     PointF sheetPosition){
-        graphicsComponent = g;
-        g.initialize(c, spec, objectSize, sheetPosition);
+    void setAnimation(AnimationComponent ac, Context c, ObjectSpec spec){
+        animationComponent = ac;
+        ac.initialize(c, spec);
     }
 
     void setMovement(MovementComponent m) {
@@ -50,6 +49,10 @@ class GameObject {
     }
 
     void draw(Canvas canvas, Paint paint) {
+        // If the object has an animation component, animate
+        if (animationComponent != null){
+            animationComponent.determineAnimation(mTransform, this);
+        }
         graphicsComponent.draw(canvas, paint, mTransform);
     }
 
@@ -86,6 +89,8 @@ class GameObject {
     Transform getTransform() {
         return mTransform;
     }
+
+    GraphicsComponent getGraphicsComponent() { return graphicsComponent; }
 
 
 

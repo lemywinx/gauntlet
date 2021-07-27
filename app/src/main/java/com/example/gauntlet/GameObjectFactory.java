@@ -58,6 +58,9 @@ class GameObjectFactory {
                     object.setGraphics(new SpriteGraphicsComponent(),
                             mContext, spec, objectSize);
                     break;
+                case "PlayerAnimationComponent":
+                    object.setAnimation(new PlayerAnimationComponent(),mContext, spec);
+                    break;
                 case "PlayerMovementComponent":
                     object.setMovement(new PlayerMovementComponent(mContext,mScreenSize ));
                     break;

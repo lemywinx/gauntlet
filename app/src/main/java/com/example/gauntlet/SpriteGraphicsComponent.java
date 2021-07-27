@@ -5,7 +5,6 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PointF;
 import android.util.Log;
@@ -17,12 +16,51 @@ public class SpriteGraphicsComponent implements GraphicsComponent{
 
 
     private Bitmap mBitmap;
-    private Bitmap mBitmapReversed;
+
+    // Dimensions for each sprite
+    final int FRAME_WIDTH = 16;
+    final int FRAME_HEIGHT = 16;
+
+    // Sprite edge padding
+    final int FRAME_PADDING = 1;
+
+    // Position of first sprite on sheet
+    final int SHEET_START_X = 3;
+    final int SHEET_START_Y = 5;
+
+    final int MAX_SPRITESHEET_X = 43;
 
 
-    public Bitmap generateSprite(Context c, ObjectSpec s, int spriteIndex, InputStream inputStream){
-        Bitmap spriteBitmap = null;
+    public Bitmap generateSprite(Context c, ObjectSpec s, int spriteIndex, Bitmap spriteSheet){
+
+        // Find where sprite is relative to the spritesheet
+        PointF spritePosition = findSpriteLocation(s.getBitmapName());
+
+        Bitmap spriteBitmap;
+
+        // If the desired position would be greater than furthest x position in sprite sheet
+        // move to next line
+        if (spritePosition.x + spriteIndex > MAX_SPRITESHEET_X){
+            spritePosition.x = 0;
+            spritePosition.y = spritePosition.y + 1;
+        } else {
+            spritePosition.x = spritePosition.x + spriteIndex;
+        }
+
+        // Create bitmap based on position in spritesheet
+        spriteBitmap = Bitmap.createBitmap(spriteSheet,
+                SHEET_START_X + (FRAME_WIDTH * (int) spritePosition.x) + (FRAME_PADDING * (int) spritePosition.x * 2),
+                SHEET_START_Y + (FRAME_HEIGHT * (int) spritePosition.y) + (FRAME_PADDING * (int) spritePosition.y * 2),
+                FRAME_WIDTH, FRAME_HEIGHT);
+
+        // Scale the bitmap to object size
+        spriteBitmap = Bitmap.createScaledBitmap(
+                spriteBitmap,
+                (int)s.getScale().x, (int)s.getScale().y,
+                false);
+
         return spriteBitmap;
+
     }
 
     public void setBitmap(Bitmap bitmap){ mBitmap = bitmap; }
@@ -30,26 +68,15 @@ public class SpriteGraphicsComponent implements GraphicsComponent{
     @Override
     public void initialize(Context c, ObjectSpec s, PointF objectSize) {
 
-        // Dimensions for each sprite
-        final int frameWidth = 16;
-        final int frameHeight = 16;
-
-        // Sprite edge padding
-        final int framePadding = 1;
-
-        // Position of first sprite on sheet
-        final int sheetStartX = 3;
-        final int sheetStartY = 5;
-
-
         try{
-
+            // Try to create initial bitmap
             AssetManager assetManager = c.getAssets();
             InputStream inputStream;
             inputStream = assetManager.open("sprite_sheet16x16.png");
             mBitmap = BitmapFactory.decodeStream(inputStream);
 
         } catch (IOException e){
+            // Spend rest of day debugging
             Log.d("Error", "Failed to load sprite sheet");
         }
 
@@ -58,39 +85,36 @@ public class SpriteGraphicsComponent implements GraphicsComponent{
 
         // Create sprite based on location in sprite sheet
         mBitmap = Bitmap.createBitmap(mBitmap,
-                sheetStartX + (frameWidth * (int) spritePosition.x) + (framePadding * (int) spritePosition.x * 2),
-                sheetStartY + (frameHeight * (int) spritePosition.y) + (framePadding * (int) spritePosition.y * 2),
-                frameWidth, frameHeight);
+                SHEET_START_X + (FRAME_WIDTH * (int) spritePosition.x) + (FRAME_PADDING * (int) spritePosition.x * 2),
+                SHEET_START_Y + (FRAME_HEIGHT * (int) spritePosition.y) + (FRAME_PADDING * (int) spritePosition.y * 2),
+                FRAME_WIDTH, FRAME_HEIGHT);
 
+        // Scale bitmap based on relative size
         mBitmap = Bitmap.createScaledBitmap(
                 mBitmap,
                 (int)objectSize.x, (int)objectSize.y,
                 false);
 
-        // Create a mirror image of the bitmap if needed
-        Matrix matrix = new Matrix();
-        matrix.setScale(-1, 1);
-        mBitmapReversed = Bitmap.createBitmap(mBitmap,
-                0, 0,
-                mBitmap.getWidth(),
-                mBitmap.getHeight(),
-                matrix, true);
-
     }
 
-    @Override
-    public void initialize(Context c, ObjectSpec s, PointF screenSize, PointF sheetPosition) {
-
-    }
 
     @Override
     public void draw(Canvas canvas, Paint paint, Transform t) {
 
-        canvas.drawBitmap(mBitmap,
-                t.getLocation().x,
-                t.getLocation().y,
-                paint);
+        // Use the magic of Div / JT / Matthew / Lans to draw the sprite
+        // in the proper place
+        if (BackgroundMovementComponent.atEdge) {
+            canvas.drawBitmap(mBitmap,
+                    PlayerMovementComponent.screenLocation.x,
+                    PlayerMovementComponent.screenLocation.y,
+                    paint);
+        } else {
+            canvas.drawBitmap(mBitmap,
+                    t.getmScreenSize().x / 2,
+                    t.getmScreenSize().y / 2,
+                    paint);
 
+        }
     }
 
     private PointF findSpriteLocation(String spriteName){
@@ -101,7 +125,7 @@ public class SpriteGraphicsComponent implements GraphicsComponent{
 
         // Set sprite position based on sprite name
         switch (spriteName){
-            case "player_stationary":
+            case "player":
                 position.x = 23;
                 position.y = 11;
                 return position;
@@ -114,6 +138,7 @@ public class SpriteGraphicsComponent implements GraphicsComponent{
                 position.y = 6;
                 break;
             default:
+                // cry
                 Log.d("Error", "Failed to find sprite");
                 break;
         }

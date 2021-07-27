@@ -9,11 +9,12 @@ class PlayerSpec extends ObjectSpec {
     private static final String bitmapName = "player";
     private static final float speed = 14f;
     private static final PointF relativeScale =
-            new PointF(11f, 7f);
+            new PointF(110f, 90f);
 
     private static final String[] components = new String [] {
             "PlayerInputComponent",
             "SpriteGraphicsComponent",
+            "PlayerAnimationComponent",
             "PlayerMovementComponent",
             "PlayerSpawnComponent"};
 

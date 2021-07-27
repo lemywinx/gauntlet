@@ -3,6 +3,7 @@ package com.example.gauntlet;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.RectF;
+import android.util.Log;
 
 class Transform {
 
@@ -11,6 +12,7 @@ class Transform {
     private boolean mReversedFirst = false;
 
     private RectF mCollider;
+    private PointF mPastLocation;
     private PointF mLocation;
     private boolean mFacingRight = true;
     private boolean mHeadingUp = false;
@@ -39,6 +41,7 @@ class Transform {
         mObjectHeight = objectHeight;
         mObjectWidth = objectWidth;
         mLocation = startingLocation;
+        mPastLocation = startingLocation;
         mScreenSize = screenSize;
 
         bitmapRes = new Point(GameData.IMAGE_RESOLUTION_X, GameData.IMAGE_RESOLUTION_Y);
@@ -152,6 +155,14 @@ class Transform {
 
     boolean headingLeft(){
         return mHeadingLeft;
+    }
+
+    boolean isMoving() {
+        // TODO: FIX PLS
+        boolean check =  mPastLocation == mLocation;
+        mPastLocation = mLocation;
+        Log.d("D", "Is Moving: " + check);
+        return check;
     }
 
     boolean isAvailableToMove() {
