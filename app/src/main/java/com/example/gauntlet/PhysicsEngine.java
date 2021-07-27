@@ -2,6 +2,7 @@ package com.example.gauntlet;
 
 import android.graphics.PointF;
 import android.graphics.RectF;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -31,44 +32,40 @@ class PhysicsEngine {
             SoundEngine se){
 
         boolean playerHit = false;
-        for(GameObject go1 : objects) {
 
-            if(go1.checkActive()){
-                // The ist object is active
-                // so worth checking
-
-                for(GameObject go2 : objects) {
-
-                    if(go2.checkActive()){
-
-                        // The 2nd object is active
-                        // so worth checking
-                        if(RectF.intersects(
-                                go1.getTransform().getCollider(),
-                                go2.getTransform().getCollider())){
-
-                            // switch goes here
-                            // There has been a collision
-                            // - but does it matter
-                            switch (go1.getTag() + " with " + go2.getTag()){
-                                case "Player with Alien Arrow":
-
+        for (GameObject go1 : objects) {
+            if (go1.checkActive()) {
+                for (GameObject go2 : objects) {
+                    if (go2.checkActive()) {
+                        if (RectF.intersects(go1.getTransform().getCollider(), go2.getTransform().getCollider())) {
+                            switch (go1.getTag() + " with " + go2.getTag()) {
                                 case "Player with Alien":
-                                    playerHit = true;
+
+                                case "Player with Troll":
+
+                                case "Player with Goblin":
+                                    //playerHit = true;
                                     mGameState.loseLife(se);
 
                                     break;
 
                                 case "Player Arrow with Alien":
+
+                                case "Player Arrow with Goblin":
+
+                                case "Player Arrow with Troll":
                                     mGameState.increaseScore();
-                                    // Respawn the alien
+
                                     go2.setInactive();
                                     go2.spawn(objects.get(Level
                                             .PLAYER_INDEX).getTransform());
 
                                     go1.setInactive();
                                     se.playAlienExplode();
-
+                                    break;
+                                case "Player with PassKey":
+                                    Log.d("Player", " ");
+                                    Level.isLevelFinished = true;
                                     break;
 
                                 case "Player with PowerUp":
@@ -82,8 +79,6 @@ class PhysicsEngine {
                                 default:
                                     break;
                             }
-
-
                         }
                     }
                 }

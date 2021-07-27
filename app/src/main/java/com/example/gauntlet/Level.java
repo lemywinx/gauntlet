@@ -15,19 +15,25 @@ class Level {
     // Keep track of specific types
     public static final int BACKGROUND_INDEX = 0;
     public static final int PLAYER_INDEX = 1;
+    public static final int PASSKEY_INDEX = 11;
     public static final int FIRST_PLAYER_ARROW = 2;
     public static final int LAST_PLAYER_ARROW = 4;
     public static int mNextPlayerArrow;
     public static final int FIRST_ALIEN = 5;
+    public static final int LAST_ALIEN = 6;
+    public static final int GOBLIN = 6;
+    public static final int TROLL = 7;
 
-    public static final int LAST_ALIEN = 5;
-    public static final int FIRST_ALIEN_ARROW = 6;
-    public static final int LAST_ALIEN_ARROW = 10;
+    public static final int FIRST_ALIEN_ARROW = 8;
+    public static final int LAST_ALIEN_ARROW = 12;
     public static int mNextAlienArrow;
     public static int[][] mMapMatrix;
     private static final int MAP_ROWS = 32;
     private static final int MAP_COLS = 32;
     public static final int POWER_UP_INDEX = 11;
+
+    // Boolean value to check if the level is ready to move on
+    public static boolean isLevelFinished = false;
 
     // track all dungeon maps
     Context appContext;
@@ -56,7 +62,6 @@ class Level {
         mMapMatrix = new int[MAP_ROWS][MAP_COLS];
         buildGameObjects(factory);
 
-        loadMap();
     }
 
     ArrayList<GameObject> buildGameObjects(
@@ -83,6 +88,15 @@ class Level {
         objects.add(FIRST_ALIEN, factory
                 .create(new GhostChaseSpec()));
 
+        //Create goblin
+        objects.add(GOBLIN, factory.create(new GoblinSpec()));
+
+        //Create Troll
+        objects.add(TROLL,factory.create(new TrollSpec()));
+
+
+
+
         // Create some alien Arrows
         for (int i = FIRST_ALIEN_ARROW; i != LAST_ALIEN_ARROW + 1; i++) {
             objects.add(i, factory
@@ -90,7 +104,13 @@ class Level {
         }
         mNextAlienArrow = FIRST_ALIEN_ARROW;
 
+
         objects.add(POWER_UP_INDEX, factory.create(new PowerUpSpec()));
+
+        // create passkey
+        objects.add(PASSKEY_INDEX, factory
+                .create(new PassKeySpec()));
+
 
         return objects;
     }
@@ -119,7 +139,6 @@ class Level {
                     }
 
                 }
-
                 currentRow++;
 
                 Log.d("map-row", String.valueOf(currentRow));
@@ -136,7 +155,7 @@ class Level {
     public void goToNextDungeon() {
         if (currentDungeon != lastDungeon) {
             currentDungeon++;
-            loadMap();
+            //loadMap();
         }
     }
 }

@@ -45,6 +45,9 @@ class Renderer {
             // Now we draw the HUD on top of everything else
             hud.draw(mCanvas, mPaint, gs);
 
+
+
+
             mSurfaceHolder.unlockCanvasAndPost(mCanvas);
         }
     }

@@ -49,6 +49,11 @@ class GameObjectFactory {
                             (mGameEngineReference));
                     break;
 
+                case "ArrowGraphicsComponent":
+                    object.setGraphics(new ArrowGraphicsComponent(), mContext, spec, objectSize);
+
+                    break;
+
                 case "StdGraphicsComponent":
                     object.setGraphics(new StdGraphicsComponent(),
                             mContext, spec, objectSize);
@@ -59,6 +64,12 @@ class GameObjectFactory {
                 case "ArrowMovementComponent":
                     object.setMovement(new ArrowMovementComponent());
                     break;
+
+                case "NPCGraphicsComponent":
+                    object.setGraphics(new NPCGraphicsComponent(), mContext, spec, objectSize);
+
+                    break;
+
                 case "PlayerSpawnComponent":
                     object.setSpawner(new PlayerSpawnComponent());
                     break;
@@ -73,19 +84,48 @@ class GameObjectFactory {
                     object.setMovement(new BackgroundMovementComponent());
                     break;
 
+                case "SimpleMovementComponent":
+                    object.setMovement(new SimpleMovementComponent());
+                    break;
+
                 case "BackgroundSpawnComponent":
                     object.setSpawner(new BackgroundSpawnComponent());
                     break;
 
                 case "GhostChaseMovementComponent":
-                    object.setMovement(
-                            new GhostChaseMovementComponent(
-                                    mGameEngineReference));
+                    object.setMovement(new GhostChaseMovementComponent(mGameEngineReference));
                     break;
 
                 case "GhostSpawnComponent":
+                    object.setSpawner(new GhostSpawnComponent());
+                    break;
+
+                case "GoblinMovementComponent":
+                    object.setMovement(new GoblinMovementComponent(mGameEngineReference));
+                    break;
+
+                case "GoblinSpawnComponent":
+                    object.setSpawner(new GoblinSpawnComponent());
+                    break;
+                case "PassKeySpawnComponent":
                     object.setSpawner(
-                            new GhostSpawnComponent());
+                            new PassKeySpawnComponent());
+                    break;
+
+                case "TrollMovementComponent":
+                    object.setMovement(
+                            new TrollMovementComponent(
+                                    mGameEngineReference));
+                    break;
+
+                case "TrollSpawnComponent":
+                    object.setSpawner(
+                            new TrollSpawnComponent());
+                    break;
+
+                case "DoorSpawnComponent":
+                    object.setSpawner(
+                            new DoorSpawnComponent());
                     break;
 
                 case "PowerUpSpawnComponent":
@@ -98,6 +138,7 @@ class GameObjectFactory {
 
                 default:
                     // Error unidentified component
+                    System.out.println("NOT LOADEDED PROPERLY");
                     break;
             }
         }

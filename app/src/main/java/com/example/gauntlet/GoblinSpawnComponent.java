@@ -2,41 +2,25 @@ package com.example.gauntlet;
 
 import java.util.Random;
 
-class GhostSpawnComponent implements SpawnComponent {
+public class GoblinSpawnComponent implements SpawnComponent{
     @Override
     public void spawn(Transform playerLTransform, Transform t) {
-
-
-        /*
         Random random = new Random();
+
 
         boolean leftSide = random.nextBoolean();
         float distance =   t.getmScreenSize().x;
 
-        // Generate a height to spawn at where
-        // the entire ship is vertically on-screen
-
         float spawnHeight = t.getmScreenSize().y;
 
-        // Spawn the ship
-
+        // Spawn the goblin
         if(leftSide){
-
-            t.setLocation(10, 10);
+            t.setLocation(500, 500);
             t.headRight();
-
-        }
-
-        else{
-
-            t.setLocation(distance - 10, spawnHeight - 10);
+        }else{
+            t.setLocation(distance - 500, spawnHeight - 500);
             t.headLeft();
         }
-
-         */
-
-        t.setLocation((5120 / 2), (5120 / 2));
-
 
     }
 }
