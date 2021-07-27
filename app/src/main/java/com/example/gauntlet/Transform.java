@@ -30,6 +30,7 @@ class Transform {
     public static int numObjects = 0;
     public static Point bitmapRes;
     public PointF overallLocation;
+    public PointF drawableLocation;
 
 
 
@@ -69,6 +70,7 @@ class Transform {
         // Adjusting speeds for horizontal/vertical movement to be the same considering non-square resolution..
         // Below will be changed.. Quick fix for code review.
         numObjects++;
+        drawableLocation = new PointF(mScreenSize.x / 2, mScreenSize.y / 2);
 
         mSpeed = new PointF(bitmapRes.x / speed, bitmapRes.y / speed);
         mVectorComponents = new PointF(0, 0);
@@ -123,6 +125,11 @@ class Transform {
         mHeadingUp = true;
         mHeadingDown = false;
 
+    }
+
+    void setDrawableLocation() {
+        drawableLocation.x = mScreenSize.x / 2;
+        drawableLocation.y = mScreenSize.y / 2;
     }
 
     void headDown(){
@@ -224,12 +231,12 @@ class Transform {
         PointF mFiringLocation = new PointF();
 
         if(mFacingRight) {
-            mFiringLocation.x = mLocation.x
-                    + (mObjectWidth / 8f);
+            mFiringLocation.x = mScreenSize.x
+                    + (mObjectWidth);
         }else
         {
             mFiringLocation.x = mLocation.x
-                    + (mObjectWidth / 8f) - (arrowLength);
+                    + (mObjectWidth) - (arrowLength);
         }
         // Move the height down a bit of ship height from origin
         mFiringLocation.y = mLocation.y + (mObjectHeight / 1.28f);

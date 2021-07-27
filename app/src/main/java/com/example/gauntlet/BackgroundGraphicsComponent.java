@@ -46,8 +46,8 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
         wallBitmap = Bitmap.createScaledBitmap(wallBitmap, lowResFactor.x, lowResFactor.y, false);
 //        bitmapNew = Bitmap.createScaledBitmap(bitmapNew, (int)objectSize.x, (int)objectSize.y, false);
         GameData.mainBitmap = Bitmap.createBitmap(mScreenRes.x, mScreenRes.y, mBitmap.getConfig());
-
         GameData.initialBitmap = Bitmap.createBitmap(mScreenRes.x, mScreenRes.y, mBitmap.getConfig());
+
 
         gameMap = new GameMap(c);
 
@@ -64,6 +64,9 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
                    gameMap.obstacleContainer.get(i).location.top,
                    null);
         }
+
+        canvas.setBitmap(GameData.initialBitmap);
+        canvas.drawBitmap(GameData.mainBitmap, 0, 0, null);
 
     /*
      for (int i = 0; i < gameMap.obstacleContainer.size(); i++) {
@@ -102,6 +105,9 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
 
         else {
                 // Portion to draw..
+
+
+
             Rect fromRect1 = new Rect((int)backgroundPortionToDraw.left, (int)backgroundPortionToDraw.top,
                     (int)backgroundPortionToDraw.right, (int)backgroundPortionToDraw.bottom);
 

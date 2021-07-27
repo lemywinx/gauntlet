@@ -3,9 +3,11 @@ package com.example.gauntlet;
 import android.content.Context;
 import android.graphics.*;
 
-public class NPCGraphicsComponent implements GraphicsComponent {
+public class ArrowGraphicsComponent implements GraphicsComponent {
+
     private Bitmap mBitmap;
     private Bitmap mBitmapReversed;
+    public static boolean lastToDraw = false;
 
     Canvas canvas2;
     @Override
@@ -28,23 +30,18 @@ public class NPCGraphicsComponent implements GraphicsComponent {
 
     @Override
     public void draw(Canvas canvas, Paint paint, Transform t) {
-        // Below is best for current movement..
-        GameData.resetBitmap();
 
-        Canvas canvas1 = new Canvas(GameData.mainBitmap);
-
-        canvas1.setBitmap(GameData.mainBitmap);
-
-
-        if (!t.getFacingRight()) {
-            canvas1.drawBitmap(mBitmap, t.getLocation().x, t.getLocation().y, paint);
+    if (t.getFacingRight()) {
+            canvas.drawBitmap(mBitmap, t.drawableLocation.x, t.drawableLocation.y, paint);
         }
 
         else {
-            canvas1.drawBitmap(mBitmapReversed, t.getLocation().x, t.getLocation().y, paint);
+            canvas.drawBitmap(mBitmapReversed, t.getLocation().x, t.getLocation().y, paint);
         }
 
+
+
+
+
     }
-
-
 }

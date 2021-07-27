@@ -13,6 +13,8 @@ class PlayerSpawnComponent implements SpawnComponent {
                 (5120 /2) - (t.getSize().x / 2),
                 5120 / 2 - (t.getSize().y / 2));
          */
+
+
         t.setLocation(
                 5120 / 2,
                 5120 / 2);

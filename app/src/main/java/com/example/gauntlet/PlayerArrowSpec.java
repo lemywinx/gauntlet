@@ -12,7 +12,7 @@ class PlayerArrowSpec extends ObjectSpec {
             new PointF(20f, 80f);
 
     private static final String[] components = new String [] {
-            "StdGraphicsComponent",
+            "ArrowGraphicsComponent",
             "ArrowMovementComponent",
             "ArrowSpawnComponent"};
 

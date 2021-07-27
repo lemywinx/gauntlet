@@ -35,7 +35,7 @@ class GhostSpawnComponent implements SpawnComponent {
 
          */
 
-        t.setLocation(0 + 150, 0 + 150);
+        t.setLocation((5120 / 2), (5120 / 2));
 
 
     }

@@ -30,41 +30,29 @@ class PhysicsEngine {
             ArrayList<GameObject> objects,
             SoundEngine se){
 
+        /*
+
+         */
+
         boolean playerHit = false;
-        for(GameObject go1 : objects) {
 
-            if(go1.checkActive()){
-                // The ist object is active
-                // so worth checking
-
-                for(GameObject go2 : objects) {
-
-                    if(go2.checkActive()){
-
-                        // The 2nd object is active
-                        // so worth checking
-                        if(RectF.intersects(
-                                go1.getTransform().getCollider(),
-                                go2.getTransform().getCollider())){
-
-                            // switch goes here
-                            // There has been a collision
-                            // - but does it matter
-                            switch (go1.getTag() + " with " + go2.getTag()){
-                                case "Player with Alien Arrow":
-
+        for (GameObject go1 : objects) {
+            if (go1.checkActive()) {
+                for (GameObject go2 : objects) {
+                    if (go2.checkActive()) {
+                        if (RectF.intersects(go1.getTransform().getCollider(), go2.getTransform().getCollider())) {
+                            switch (go1.getTag() + " with " + go2.getTag()) {
                                 case "Player with Alien":
-//                                    playerHit = true;
-//                                    mGameState.loseLife(se);
+                                    //playerHit = true;
+                                    mGameState.loseLife(se);
 
                                     break;
 
                                 case "Player Arrow with Alien":
                                     mGameState.increaseScore();
-                                    // Respawn the alien
+
                                     go2.setInactive();
-                                    go2.spawn(objects.get(Level
-                                            .PLAYER_INDEX).getTransform());
+                                    go2.spawn(objects.get(Level.PLAYER_INDEX).getTransform());
 
                                     go1.setInactive();
                                     se.playAlienExplode();
@@ -72,15 +60,16 @@ class PhysicsEngine {
                                     break;
 
                                 default:
+
                                     break;
                             }
-
-
                         }
                     }
                 }
             }
         }
+
+
         return playerHit;
     }
 

@@ -55,7 +55,6 @@ class Level {
         mMapMatrix = new int[MAP_ROWS][MAP_COLS];
         buildGameObjects(factory);
 
-        loadMap();
     }
 
     ArrayList<GameObject> buildGameObjects(
@@ -134,7 +133,7 @@ class Level {
     public void goToNextDungeon() {
         if (currentDungeon != lastDungeon) {
             currentDungeon++;
-            loadMap();
+            //loadMap();
         }
     }
 }

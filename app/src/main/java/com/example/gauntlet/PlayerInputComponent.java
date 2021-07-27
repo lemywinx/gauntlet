@@ -35,6 +35,7 @@ class PlayerInputComponent implements InputComponent,
         int x = (int) event.getX(i);
         int y = (int) event.getY(i);
         Joystick localJS = buttons.second;
+        ArrayList<Rect> localButtons = buttons.first;
         switch (event.getAction() & MotionEvent.ACTION_MASK) {
 
             case MotionEvent.ACTION_UP:
@@ -44,7 +45,13 @@ class PlayerInputComponent implements InputComponent,
                 break;
 
             case MotionEvent.ACTION_DOWN:
-                if (localJS.isJoystickTouched(x, y)) {
+
+                if (localButtons.get(HUD.SHOOT).contains(x, y)) {
+                    System.out.println("TRYING TO SHOOT.");
+                    mPLS.spawnPlayerArrow(mTransform);
+                }
+
+                else if (localJS.isJoystickTouched(x, y)) {
                     mTransform.setAngle(localJS.calcAngle(x, y));
                     mTransform.setMovementAvailability();
                 }

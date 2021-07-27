@@ -49,6 +49,11 @@ class GameObjectFactory {
                             (mGameEngineReference));
                     break;
 
+                case "ArrowGraphicsComponent":
+                    object.setGraphics(new ArrowGraphicsComponent(), mContext, spec, objectSize);
+
+                    break;
+
                 case "StdGraphicsComponent":
                     object.setGraphics(new StdGraphicsComponent(),
                             mContext, spec, objectSize);
@@ -96,6 +101,7 @@ class GameObjectFactory {
 
                 default:
                     // Error unidentified component
+                    System.out.println("NOT LOADEDED PROPERLY");
                     break;
             }
         }

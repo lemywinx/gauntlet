@@ -23,6 +23,7 @@ class BackgroundMovementComponent implements MovementComponent {
         int width = 5120;
         int height = 5120;
         PointF playerLocation = playerTransform.getLocation();
+        System.out.println("Player Location: " + playerTransform.getLocation().x + "," + playerTransform.getLocation().y);
         int left = 0;
         int right = 0;
         int top = 0;

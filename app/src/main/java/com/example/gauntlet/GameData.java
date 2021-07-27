@@ -1,6 +1,7 @@
 package com.example.gauntlet;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.graphics.Rect;
 
@@ -21,6 +22,15 @@ public class GameData {
 
     public static RectF visibleScreenRect = new RectF();
     public static Rect fullMapRect = new Rect();
+
+    static void resetBitmap() {
+        Canvas canvas = new Canvas();
+        canvas.setBitmap(mainBitmap);
+
+        canvas.drawBitmap(initialBitmap, 0, 0, null);
+
+    }
+
 
 
 }
