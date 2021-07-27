@@ -29,6 +29,11 @@ public class ArrowGraphicsComponent implements GraphicsComponent {
     }
 
     @Override
+    public void setBitmap(Bitmap bitmap) {
+
+    }
+
+    @Override
     public void draw(Canvas canvas, Paint paint, Transform t) {
 
     if (t.getFacingRight()) {

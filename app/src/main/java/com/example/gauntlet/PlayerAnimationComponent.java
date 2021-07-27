@@ -71,8 +71,8 @@ public class PlayerAnimationComponent extends SpriteGraphicsComponent implements
     public void determineAnimation(Transform t, GameObject player){
 
         // No magic numbers here
-        double PI = 3.14159;
-        int DEGREES_CIRCLE = 360;
+        final double PI = 3.14159;
+        final int DEGREES_CIRCLE = 360;
 
         // Get current angle of joystick
         double currentAngle = t.getAngle();
