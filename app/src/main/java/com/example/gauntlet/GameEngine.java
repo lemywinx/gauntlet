@@ -85,9 +85,6 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
     }
 
 
-
-
-
     @Override
     public void run() {
         while (mGameState.getThreadRunning()) {
@@ -103,6 +100,7 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
 
                     // Player hit
                     deSpawnReSpawn();
+
                 }
 
             }
@@ -168,7 +166,14 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
                 .spawn(objects.get(Level.PLAYER_INDEX)
                         .getTransform());
 
-        objects.get(Level.FIRST_ALIEN).spawn(objects.get(Level.PLAYER_INDEX).getTransform());
+
+      objects.get(Level.FIRST_ALIEN).spawn(objects.get(Level.PLAYER_INDEX).getTransform());
+
+
+
+        Transform.resetRelativeLocation();
+
+
 
 
     }

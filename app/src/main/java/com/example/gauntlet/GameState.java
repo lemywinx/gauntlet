@@ -13,6 +13,7 @@ final class GameState {
     // in GameEngine- once it is initialized
     private GameStarter gameStarter;
 
+
     private int mScore;
     private int mHighScore;
     private int mNumShips;
@@ -23,7 +24,6 @@ final class GameState {
     GameState(GameStarter gs, Context context){
         // This initializes the gameStarter reference
         gameStarter = gs;
-
         // Get the current high score
         SharedPreferences prefs;
         prefs = context.getSharedPreferences("HiScore",
