@@ -49,6 +49,11 @@ class GameObjectFactory {
                             (mGameEngineReference));
                     break;
 
+                case "ArrowGraphicsComponent":
+                    object.setGraphics(new ArrowGraphicsComponent(), mContext, spec, objectSize);
+
+                    break;
+
                 case "StdGraphicsComponent":
                     object.setGraphics(new StdGraphicsComponent(),
                             mContext, spec, objectSize);
@@ -67,6 +72,12 @@ class GameObjectFactory {
                 case "ArrowMovementComponent":
                     object.setMovement(new ArrowMovementComponent());
                     break;
+
+                case "NPCGraphicsComponent":
+                    object.setGraphics(new NPCGraphicsComponent(), mContext, spec, objectSize);
+
+                    break;
+
                 case "PlayerSpawnComponent":
                     object.setSpawner(new PlayerSpawnComponent());
                     break;
@@ -127,6 +138,7 @@ class GameObjectFactory {
 
                 default:
                     // Error unidentified component
+                    System.out.println("NOT LOADEDED PROPERLY");
                     break;
             }
         }

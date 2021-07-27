@@ -65,8 +65,8 @@ final class GameState {
 
 
     void loseLife(SoundEngine se){
-        mNumShips--;
-        se.playPlayerExplode();
+//        mNumShips--;
+//        se.playPlayerExplode();
         if(mNumShips == 0){
             pause();
             endGame();

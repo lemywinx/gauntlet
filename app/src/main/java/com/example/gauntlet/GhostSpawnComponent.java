@@ -5,8 +5,10 @@ import java.util.Random;
 class GhostSpawnComponent implements SpawnComponent {
     @Override
     public void spawn(Transform playerLTransform, Transform t) {
-        Random random = new Random();
 
+
+        /*
+        Random random = new Random();
 
         boolean leftSide = random.nextBoolean();
         float distance =   t.getmScreenSize().x;
@@ -17,13 +19,24 @@ class GhostSpawnComponent implements SpawnComponent {
         float spawnHeight = t.getmScreenSize().y;
 
         // Spawn the ship
+
         if(leftSide){
+
             t.setLocation(10, 10);
             t.headRight();
-        }else{
+
+        }
+
+        else{
+
             t.setLocation(distance - 10, spawnHeight - 10);
             t.headLeft();
         }
+
+         */
+
+        t.setLocation((5120 / 2), (5120 / 2));
+
 
     }
 }

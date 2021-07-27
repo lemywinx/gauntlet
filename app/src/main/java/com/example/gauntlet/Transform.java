@@ -31,6 +31,10 @@ class Transform {
     public static PointF screenResConversionFactor = new PointF(0, 0);
     public static int numObjects = 0;
     public static Point bitmapRes;
+    public PointF overallLocation;
+    public PointF drawableLocation;
+
+
 
     Transform(float speed, float objectWidth,
               float objectHeight,
@@ -48,6 +52,8 @@ class Transform {
 
         lowResConversionFactor.x = GameData.LOWRES_CONV_FACTOR_X;
         lowResConversionFactor.y = GameData.LOWRES_CONV_FACTOR_Y;
+
+
 
         screenResConversionFactor.x = GameData.IMAGE_RESOLUTION_X / mScreenSize.x;
         screenResConversionFactor.y = GameData.IMAGE_RESOLUTION_Y / mScreenSize.y;
@@ -67,6 +73,7 @@ class Transform {
         // Adjusting speeds for horizontal/vertical movement to be the same considering non-square resolution..
         // Below will be changed.. Quick fix for code review.
         numObjects++;
+        drawableLocation = new PointF(mScreenSize.x / 2, mScreenSize.y / 2);
 
         mSpeed = new PointF(bitmapRes.x / speed, bitmapRes.y / speed);
         mVectorComponents = new PointF(0, 0);
@@ -123,6 +130,11 @@ class Transform {
 
     }
 
+    void setDrawableLocation() {
+        drawableLocation.x = mScreenSize.x / 2;
+        drawableLocation.y = mScreenSize.y / 2;
+    }
+
     void headDown(){
         mHeadingDown = true;
         mHeadingUp = false;
@@ -171,12 +183,19 @@ class Transform {
     void updateCollider(){
         // Pull the borders in a bit (10%)
         mCollider.top = mLocation.y + (mObjectHeight / 10);
-        mCollider.left = mLocation.x + (mObjectWidth /10);
-        mCollider.bottom = (mCollider.top + mObjectHeight)
-                - mObjectHeight/10;
 
+        mCollider.left = mLocation.x + (mObjectWidth /10);
+       // mCollider.bottom = (mCollider.top + mObjectHeight)
+            //    - mObjectHeight/10;
+
+        mCollider.bottom = (mCollider.top + (float)(mObjectHeight * .90));
+        /*
         mCollider.right = (mCollider.left + mObjectWidth)
                 -  mObjectWidth/10;
+         */
+
+        mCollider.right = (mCollider.left + (mObjectWidth / 3));
+
     }
 
     float getObjectHeight(){
@@ -206,8 +225,8 @@ class Transform {
     }
 
     PointF getSize(){
-        return new PointF((int)mObjectWidth,
-                (int)mObjectHeight);
+        return new PointF(mObjectWidth,
+                mObjectHeight);
     }
 
     void flip(){
@@ -226,12 +245,12 @@ class Transform {
         PointF mFiringLocation = new PointF();
 
         if(mFacingRight) {
-            mFiringLocation.x = mLocation.x
-                    + (mObjectWidth / 8f);
+            mFiringLocation.x = mScreenSize.x
+                    + (mObjectWidth);
         }else
         {
             mFiringLocation.x = mLocation.x
-                    + (mObjectWidth / 8f) - (arrowLength);
+                    + (mObjectWidth) - (arrowLength);
         }
         // Move the height down a bit of ship height from origin
         mFiringLocation.y = mLocation.y + (mObjectHeight / 1.28f);

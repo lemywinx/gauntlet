@@ -11,7 +11,8 @@ class ArrowSpawnComponent implements SpawnComponent {
         PointF startPosition =
                 playerTransform.getFiringLocation(t.getSize().x);
 
-        t.setLocation((int)startPosition.x, (int)startPosition.y);
+        t.setLocation(playerTransform.getLocation().x, playerTransform.getLocation().y);
+        t.setDrawableLocation();
 
         if(playerTransform.getFacingRight()){
             t.headRight();
@@ -19,6 +20,8 @@ class ArrowSpawnComponent implements SpawnComponent {
         else{
             t.headLeft();
         }
+
+       // ArrowGraphicsComponent.lastToDraw = //true;
 
 
     }
