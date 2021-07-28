@@ -54,6 +54,8 @@ class PlayerInputComponent implements InputComponent,
                 else if (localJS.isJoystickTouched(x, y)) {
                     mTransform.setAngle(localJS.calcAngle(x, y));
                     mTransform.setMovementAvailability();
+                }else if (buttons.first.get(HUD.SHOOT).contains(x, y)) {
+                    mPLS.spawnPlayerArrow(mTransform);
                 }
 
                 break;
@@ -68,6 +70,8 @@ class PlayerInputComponent implements InputComponent,
                 if (localJS.isJoystickTouched(x, y)) {
                     mTransform.setAngle(localJS.calcAngle(x, y));
                     mTransform.setMovementAvailability();
+                } else if (buttons.first.get(HUD.SHOOT).contains(x, y)) {
+                    mPLS.spawnPlayerArrow(mTransform);
                 }
 
                 break;
