@@ -89,6 +89,7 @@ class PlayerMovementComponent implements MovementComponent {
             }
 
             if (RectF.intersects(t.getCollider(), gameMap.exitObstacle.getLocation())){
+                Log.d("Toast: ", "toast is here, brah");
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
