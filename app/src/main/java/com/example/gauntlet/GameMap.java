@@ -21,6 +21,7 @@ public class GameMap {
     public static ArrayList<Obstacle> obstacleContainer = new ArrayList<Obstacle>();
     private Point lowResFactor;
     private SpatialCollision localCollisionComponent;
+    public static Obstacle exitObstacle;
 
 
 
@@ -64,6 +65,10 @@ public class GameMap {
 
 //                        }
 
+                    }
+                    if (mMapMatrix[currentRow][i] == 3){
+                        exitObstacle = new Obstacle(new RectF(((i * lowResFactor.x)), (currentRow * lowResFactor.y),
+                                (i * lowResFactor.x) + 160, (currentRow * lowResFactor.y) + 160));
                     }
                     // if MapMatrix at the current position holds a 0, add the middle of that location
                     // to the list of spawnable locations for other classes to use
